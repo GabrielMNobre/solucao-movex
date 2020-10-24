@@ -79,7 +79,7 @@ public class VendaNova extends javax.swing.JFrame {
 
         jButton5.setText("Escritorio");
 
-        jButton6.setText("Home Office");
+        jButton6.setText("Banheiro");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

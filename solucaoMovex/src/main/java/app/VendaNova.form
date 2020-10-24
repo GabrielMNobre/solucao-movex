@@ -168,7 +168,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Home Office"/>
+            <Property name="text" type="java.lang.String" value="Banheiro"/>
           </Properties>
         </Component>
       </SubComponents>
