@@ -7,7 +7,6 @@ package model;
 
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -21,7 +20,7 @@ public class Validador {
     public static boolean isNull(JTextField txt, JLabel label) {
         if(txt.getText().replace(".", "").replace("-", "").replace("/", "").replace("(", "").replace(")", "").trim().equals("")) {
             txt.setBackground(Color.YELLOW);
-            label.setText("Os campos que estão em amarelo tem preenchimento obrigatório!");
+            label.setText("Os campos que estão em amarelo tem preenchimento obrigatório!\n");
             return true;
         } else {
             txt.setBackground(Color.WHITE);
@@ -40,16 +39,28 @@ public class Validador {
             
         }catch(NumberFormatException e){
         
-            label.setText("Falha ao converter o valor para inteiro!");
+            label.setText("Falha ao converter o valor para inteiro!\n");
             txt.setBackground(Color.RED);
             retorno = "ERR";
         }catch(IllegalArgumentException e){
-            label.setText("Digite apenas números ao campo número!");
+            label.setText("Digite apenas números ao campo número!\n");
             txt.setBackground(Color.RED);
             retorno = "ERR";
         }
         
         return retorno;
+    }
+    
+    public boolean ValidaSenhaCadastro(JTextField senha, JTextField confirmacao, JLabel label) {
+        if(!confirmacao.getText().equals(senha.getText())) {
+            label.setText("As senha não são iguais! Digite novamente\n");
+            confirmacao.setBackground(Color.RED);
+            return false;
+        } else {
+            confirmacao.setBackground(Color.WHITE);
+            label.setText("");
+            return true;
+        }
     }
     
 }

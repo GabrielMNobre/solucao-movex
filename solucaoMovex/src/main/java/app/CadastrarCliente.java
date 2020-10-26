@@ -5,7 +5,6 @@
  */
 package app;
 
-import javax.swing.JOptionPane;
 import model.PessoaFisica;
 import model.PessoaJuridica;
 import model.Validador;
@@ -137,7 +136,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
         jLabel5.setText("UF:");
 
-        cboUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
+        cboUF.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RO", "AC", "AM", "RR", "PA", "AP", "TO", "MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA", "MG", "ES", "RJ", "SP", "PR", "SC", "RS", "MS", "MT", "GO", "DF" }));
         cboUF.setToolTipText("Campo Obrigatório");
 
         jLabel6.setText("Cidade:");
@@ -399,8 +398,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
         } else {
             return;
         }
-        
-        System.out.println("PASSOU");
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
