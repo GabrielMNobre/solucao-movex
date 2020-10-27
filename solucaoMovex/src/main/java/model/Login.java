@@ -3,9 +3,9 @@ package model;
 public class Login {
     
     private String usuario;
-    private Integer senha;
+    private String senha;
 
-    public Login(String usuario, Integer senha) {
+    public Login(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }    
@@ -18,11 +18,11 @@ public class Login {
         this.usuario = usuario;
     }
 
-    public Integer getSenha() {
+    public String getSenha() {
         return senha;
     }
 
-    public void setSenha(Integer senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
     
