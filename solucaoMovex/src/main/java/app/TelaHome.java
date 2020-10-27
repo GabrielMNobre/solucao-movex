@@ -16,6 +16,7 @@ public class TelaHome extends javax.swing.JFrame {
      */
     public TelaHome() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
