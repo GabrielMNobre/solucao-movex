@@ -61,8 +61,10 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtRetornoErro = new javax.swing.JLabel();
         txtCodBarras = new javax.swing.JLabel();
         edtCodBarras = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtEstoqueMinimo = new javax.swing.JLabel();
+        edtEstoqueMinimo = new javax.swing.JTextField();
+        txtEstoqueAtual = new javax.swing.JLabel();
+        edtEstoqueAtual = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -197,6 +199,12 @@ public class CadastroProduto extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Departamento");
 
+        edtCor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                edtCorActionPerformed(evt);
+            }
+        });
+
         jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrador\\OneDrive\\Documentos\\sofa.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
 
@@ -226,9 +234,11 @@ public class CadastroProduto extends javax.swing.JFrame {
         txtCodBarras.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtCodBarras.setText("Código de Barras");
 
-        jLabel9.setText("jLabel9");
+        txtEstoqueMinimo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEstoqueMinimo.setText("Estoque Mínimo");
 
-        jTextField1.setText("jTextField1");
+        txtEstoqueAtual.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtEstoqueAtual.setText("Estoque Atual");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -253,7 +263,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                                         .addGap(100, 100, 100)
                                         .addComponent(txtRetornoErro, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(146, 146, 146)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -261,27 +271,27 @@ public class CadastroProduto extends javax.swing.JFrame {
                                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jRadioButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(46, 46, 46)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(edtPreco)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel5)
                                             .addComponent(jLabel7)
-                                            .addComponent(edtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel8)
-                                            .addComponent(edtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(edtCor, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                            .addComponent(edtDepartamento)
+                                            .addComponent(edtPreco))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(txtCodBarras)
-                                            .addComponent(edtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel9)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(txtEstoqueMinimo)
+                                            .addComponent(txtEstoqueAtual)
+                                            .addComponent(edtEstoqueMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                            .addComponent(edtCodBarras)
+                                            .addComponent(edtEstoqueAtual)))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(267, 267, 267)
                                 .addComponent(jLabel4)))
-                        .addGap(0, 176, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {edtCor, edtDepartamento, edtPreco});
-
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -291,42 +301,51 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edtObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jRadioButton1)
-                            .addGap(12, 12, 12)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(edtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(edtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel8))
-                    .addComponent(txtRetornoErro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtCodBarras)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(edtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(678, Short.MAX_VALUE))
+                        .addComponent(edtObservacoes, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(69, 69, 69)
+                        .addComponent(txtRetornoErro, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jRadioButton1)
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtCodBarras))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtDepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
+                                .addComponent(edtCodBarras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(edtEstoqueMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtEstoqueAtual)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(edtEstoqueAtual, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(txtEstoqueMinimo)))))
+                .addContainerGap(855, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edtCodBarras, edtCor, edtDepartamento, edtPreco, jLabel8, txtCodBarras});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {edtCodBarras, edtCor, edtDepartamento, edtEstoqueAtual, edtEstoqueMinimo, edtPreco, jLabel8, txtCodBarras, txtEstoqueAtual, txtEstoqueMinimo});
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -407,14 +426,21 @@ public class CadastroProduto extends javax.swing.JFrame {
         
         validador.isNull(edtCodBarras, txtRetornoErro);
         
+        validador.isNull(edtEstoqueMinimo, txtRetornoErro);
         
+        validador.isNull(edtEstoqueAtual, txtRetornoErro);
+
+       
         if(!validador.isNull(edtID, txtRetornoErro)&& !validador.isNull(edtID, txtRetornoErro)&& !validador.isNull(edtID, txtRetornoErro)&& 
                 !validador.isNull(edtID, txtRetornoErro)&& !validador.isNull(edtID, txtRetornoErro)
-                && !validador.isNull(edtCodBarras, txtRetornoErro)){
+                && !validador.isNull(edtCodBarras, txtRetornoErro)&& !validador.isNull(edtEstoqueAtual, txtRetornoErro)
+                && !validador.isNull(edtEstoqueMinimo, txtRetornoErro)){
             
             if(validador.ValidarNumero(edtID, txtRetornoErro).equals("OK")
                     && validador.ValidarNumero(edtPreco, txtRetornoErro).equals("OK")
-                    && validador.ValidarNumero(edtCodBarras, txtRetornoErro).equals("OK")){
+                    && validador.ValidarNumero(edtCodBarras, txtRetornoErro).equals("OK")
+                    && validador.ValidarNumero(edtEstoqueMinimo, txtRetornoErro).equals("OK")
+                    && validador.ValidarNumero(edtEstoqueAtual, txtRetornoErro).equals("OK")){
                 String dados[] = {
                     edtID.getText(),
                     edtPreco.getText(),
@@ -422,9 +448,10 @@ public class CadastroProduto extends javax.swing.JFrame {
                     edtDepartamento.getText(),
                     edtNome.getText(),
                     edtCodBarras.getText(),
+                    edtEstoqueMinimo.getText(),
+                    edtEstoqueAtual.getText(),
                 };
             CadProduto cp = new CadProduto(dados);  
-            JOptionPane.showMessageDialog(null, cp);
             }else{
                 return;
             }
@@ -440,6 +467,10 @@ public class CadastroProduto extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void edtCorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_edtCorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_edtCorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,6 +517,8 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JTextField edtCodBarras;
     private javax.swing.JTextField edtCor;
     private javax.swing.JTextField edtDepartamento;
+    private javax.swing.JTextField edtEstoqueAtual;
+    private javax.swing.JTextField edtEstoqueMinimo;
     private javax.swing.JTextField edtID;
     private javax.swing.JTextField edtNome;
     private javax.swing.JTextField edtObservacoes;
@@ -499,15 +532,15 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel txtCodBarras;
+    private javax.swing.JLabel txtEstoqueAtual;
+    private javax.swing.JLabel txtEstoqueMinimo;
     private javax.swing.JLabel txtRetornoErro;
     // End of variables declaration//GEN-END:variables
 }
