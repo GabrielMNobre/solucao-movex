@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package View;
 
-import model.PessoaFisica;
-import model.PessoaJuridica;
-import model.Validador;
+import Model.PessoaFisica;
+import Model.PessoaJuridica;
+import Model.Validador;
 
 /**
  *
@@ -151,6 +151,12 @@ public class CadastrarCliente extends javax.swing.JFrame {
         txtComplemento.setToolTipText("Campo Opcional");
 
         jLabel10.setText("Email:");
+
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmailActionPerformed(evt);
+            }
+        });
 
         btnCadastrar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnCadastrar.setText("CADASTRAR");
@@ -399,6 +405,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
             return;
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments

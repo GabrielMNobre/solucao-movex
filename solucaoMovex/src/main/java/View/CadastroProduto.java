@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package View;
 
 import javax.swing.JOptionPane;
-import model.CadProduto;
-import model.Validador;
+import Model.Produto;
+import Model.Validador;
 
 /**
  *
@@ -205,7 +205,6 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Administrador\\OneDrive\\Documentos\\sofa.jpg")); // NOI18N
         jLabel6.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -451,7 +450,7 @@ public class CadastroProduto extends javax.swing.JFrame {
                     edtEstoqueMinimo.getText(),
                     edtEstoqueAtual.getText(),
                 };
-            CadProduto cp = new CadProduto(dados);  
+            Produto cp = new Produto(dados);  
             }else{
                 return;
             }

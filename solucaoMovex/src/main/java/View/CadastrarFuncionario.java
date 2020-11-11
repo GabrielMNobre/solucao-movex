@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package View;
 
 import javax.swing.JOptionPane;
-import model.Funcionario;
-import model.Validador;
+import Model.Funcionario;
+import Model.Validador;
 
 /**
  *

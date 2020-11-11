@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app;
+package View;
 
 /**
  *
@@ -172,7 +172,7 @@ public class TelaHome extends javax.swing.JFrame {
         jmEstoque.setText("Estoque");
         jMenu1.add(jmEstoque);
 
-        jmSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_MASK));
+        jmSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         jmSair.setText("Sair");
         jMenu1.add(jmSair);
 
