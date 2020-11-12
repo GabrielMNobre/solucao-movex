@@ -19,7 +19,7 @@ public class Produto {
     private int codigoBarras;
     private double preco;
     private String cor;
-    private String observacoes;
+    private String descricao;
     private String urlImagem;
     private String departamento;
     
@@ -89,10 +89,10 @@ public class Produto {
     }
     
      public String getObservacoes(){
-        return observacoes;
+        return descricao;
     }
     public void setObservacoes(String pObservacoes){
-        this.observacoes = pObservacoes;
+        this.descricao = pObservacoes;
     }
     
      public String getUrlImagem(){
