@@ -7,7 +7,7 @@ package View;
 
 import javax.swing.JOptionPane;
 import Model.Funcionario;
-import Model.Validador;
+import utils.Validador;
 
 /**
  *

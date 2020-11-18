@@ -5,9 +5,8 @@
  */
 package View;
 
-import Model.PessoaFisica;
-import Model.PessoaJuridica;
-import Model.Validador;
+import Model.Cliente;
+import utils.Validador;
 
 /**
  *
@@ -20,7 +19,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
      */
     public CadastrarCliente() {
         initComponents();
-        panelInfos.setVisible(false);
     }
 
     /**
@@ -32,14 +30,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoTipoPessoa = new javax.swing.ButtonGroup();
-        rboPF = new javax.swing.JRadioButton();
-        rboPJ = new javax.swing.JRadioButton();
+        bgoSexo = new javax.swing.ButtonGroup();
         panelInfos = new javax.swing.JPanel();
-        lblCNPJ = new javax.swing.JLabel();
         lblCPF = new javax.swing.JLabel();
         txtCPF = new javax.swing.JFormattedTextField();
-        txtCNPJ = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -62,31 +56,15 @@ public class CadastrarCliente extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         lblErros = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro de clientes");
 
-        grupoTipoPessoa.add(rboPF);
-        rboPF.setText("Pessoa Física");
-        rboPF.setActionCommand("PF");
-        rboPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rboPFActionPerformed(evt);
-            }
-        });
-
-        grupoTipoPessoa.add(rboPJ);
-        rboPJ.setText("Pessoa Jurídica");
-        rboPJ.setActionCommand("PJ");
-        rboPJ.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rboPJActionPerformed(evt);
-            }
-        });
-
         panelInfos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Informações do Cliente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 14))); // NOI18N
-
-        lblCNPJ.setText("CNPJ:");
 
         lblCPF.setText("CPF:");
 
@@ -96,19 +74,7 @@ public class CadastrarCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        try {
-            txtCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel1.setText("Nome:");
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Celular:");
 
@@ -169,6 +135,20 @@ public class CadastrarCliente extends javax.swing.JFrame {
         lblErros.setForeground(new java.awt.Color(255, 0, 0));
         lblErros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        jLabel11.setText("Sexo:");
+
+        bgoSexo.add(jRadioButton1);
+        jRadioButton1.setText("Masculino");
+        jRadioButton1.setActionCommand("Masculino");
+
+        bgoSexo.add(jRadioButton2);
+        jRadioButton2.setText("Feminino");
+        jRadioButton2.setActionCommand("Feminino");
+
+        bgoSexo.add(jRadioButton3);
+        jRadioButton3.setText("Outros");
+        jRadioButton3.setActionCommand("Outros");
+
         javax.swing.GroupLayout panelInfosLayout = new javax.swing.GroupLayout(panelInfos);
         panelInfos.setLayout(panelInfosLayout);
         panelInfosLayout.setHorizontalGroup(
@@ -188,11 +168,11 @@ public class CadastrarCliente extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel3)
                             .addComponent(lblCPF)
-                            .addComponent(lblCNPJ)
                             .addComponent(jLabel1)
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel11))
                         .addGap(26, 26, 26)
                         .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelInfosLayout.createSequentialGroup()
@@ -204,16 +184,22 @@ public class CadastrarCliente extends javax.swing.JFrame {
                             .addComponent(txtEndereco)
                             .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panelInfosLayout.createSequentialGroup()
-                                .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCelular)
-                                    .addComponent(txtCNPJ)
-                                    .addComponent(txtCPF)
-                                    .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCidade)
-                                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
-                                    .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCelular)
+                                        .addComponent(txtCPF)
+                                        .addComponent(txtCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cboUF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtCidade)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                                        .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(panelInfosLayout.createSequentialGroup()
+                                        .addComponent(jRadioButton1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRadioButton3)))
+                                .addGap(0, 179, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addComponent(lblErros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -234,8 +220,10 @@ public class CadastrarCliente extends javax.swing.JFrame {
                     .addComponent(lblCPF))
                 .addGap(18, 18, 18)
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCNPJ)
-                    .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
+                    .addComponent(jRadioButton1)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
                 .addGap(18, 18, 18)
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -269,19 +257,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblErros, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+                .addComponent(lblErros, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(rboPF)
-                .addGap(52, 52, 52)
-                .addComponent(rboPJ)
-                .addContainerGap(169, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(panelInfos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -291,10 +273,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rboPF)
-                    .addComponent(rboPJ))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panelInfos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -302,45 +280,12 @@ public class CadastrarCliente extends javax.swing.JFrame {
         setBounds(0, 0, 644, 716);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rboPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rboPFActionPerformed
-        
-        if(rboPF.isSelected()) {
-            txtCNPJ.setVisible(false);
-            txtCPF.setVisible(true);
-            lblCNPJ.setVisible(false);
-            lblCPF.setVisible(true);
-            panelInfos.setVisible(true);
-        }
-        
-    }//GEN-LAST:event_rboPFActionPerformed
-
-    private void rboPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rboPJActionPerformed
-        
-        if(rboPJ.isSelected()) {
-            txtCPF.setVisible(false);
-            txtCNPJ.setVisible(true);
-            lblCPF.setVisible(false);
-            lblCNPJ.setVisible(true);
-            panelInfos.setVisible(true);
-        }
-        
-    }//GEN-LAST:event_rboPJActionPerformed
-
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         Validador valida = new Validador();
         
-        if(grupoTipoPessoa.getSelection().getActionCommand().equals("PF")) {
-            valida.isNull(txtCPF, lblErros);
-        } else {
-             valida.isNull(txtCNPJ, lblErros);
-        }
-        
         valida.isNull(txtNome, lblErros);
         valida.isNull(txtEmail, lblErros);
+        valida.isNull(txtCPF, lblErros);
         valida.isNull(txtCidade, lblErros);
         valida.isNull(txtTelefone, lblErros);
         valida.isNull(txtCelular, lblErros);
@@ -350,12 +295,14 @@ public class CadastrarCliente extends javax.swing.JFrame {
         
         if(!valida.isNull(txtNome, lblErros) && !valida.isNull(txtEmail, lblErros) && !valida.isNull(txtTelefone, lblErros) && 
            !valida.isNull(txtCelular, lblErros) && !valida.isNull(txtCidade, lblErros) && !valida.isNull(txtCEP, lblErros) && 
-           !valida.isNull(txtEndereco, lblErros) && !valida.isNull(txtNumero, lblErros)) {
+           !valida.isNull(txtEndereco, lblErros) && !valida.isNull(txtCPF, lblErros) && !valida.isNull(txtNumero, lblErros)) {
             
             if(valida.ValidarNumero(txtNumero, lblErros).equals("OK")) {
                 String dados[] = {
                     txtNome.getText(),
                     txtEmail.getText(),
+                    bgoSexo.getSelection().getActionCommand(),
+                    txtCPF.getText(),
                     txtTelefone.getText(),
                     txtCelular.getText(),
                     cboUF.getSelectedItem().toString(),
@@ -363,46 +310,23 @@ public class CadastrarCliente extends javax.swing.JFrame {
                     txtCEP.getText(),
                     txtEndereco.getText(),
                     txtNumero.getText(),
-                    txtComplemento.getText(),
-                    ""
+                    txtComplemento.getText()
                 };
+                Cliente cli = new Cliente(dados);
+                System.out.println("NOME: " + cli.getNome()
+                                 + "\nEMAIL: " + cli.getEmail()
+                                 + "\nSEXO: "+ cli.getSexo()
+                                 + "\nCPF: " + cli.getCpf()
+                                 + "\nTELEFONE: " + cli.getTelefone()
+                                 + "\nCELULAR: " + cli.getCelular()
+                                 + "\nUF: " + cli.getUf()
+                                 + "\nCIDADE: " + cli.getCidade()
+                                 + "\nCEP: " + cli.getCep()
+                                 + "\nENDEREÇO: " + cli.getLogradouro()
+                                 + "\nNÚMERO: " + cli.getNumeroLogradouro()
+                                 + "\nCOMPLEMENTO: " + cli.getComplementoLogradouro());
                 
-                if(grupoTipoPessoa.getSelection().getActionCommand().equals("PF")) {
-                    dados[10] = txtCPF.getText();
-                    PessoaFisica pf = new PessoaFisica(dados);
-                    //imprimindo para ter certeza se os dados foram inputados nas variáveis da classe
-                    System.out.println("NOME: " + pf.getNome()
-                                     + "\nEMAIL: " + pf.getEmail()
-                                     + "\nCPF: " + pf.getCpf()
-                                     + "\nTELEFONE: " + pf.getTelefone()
-                                     + "\nCELULAR: " + pf.getCelular()
-                                     + "\nUF: " + pf.getUf()
-                                     + "\nCIDADE: " + pf.getCidade()
-                                     + "\nCEP: " + pf.getCep()
-                                     + "\nENDEREÇO: " + pf.getLogradouro()
-                                     + "\nNÚMERO: " + pf.getNumeroLogradouro()
-                                     + "\nCOMPLEMENTO: " + pf.getComplementoLogradouro());
-                } else {
-                    dados[10] = txtCNPJ.getText();
-                    PessoaJuridica pj = new PessoaJuridica(dados);
-                    //imprimindo para ter certeza se os dados foram inputados nas variáveis da classe
-                    System.out.println("NOME: " + pj.getNome()
-                                     + "\nEMAIL: " + pj.getEmail()
-                                     + "\nCPF: " + pj.getCnpj()
-                                     + "\nTELEFONE: " + pj.getTelefone()
-                                     + "\nCELULAR: " + pj.getCelular()
-                                     + "\nUF: " + pj.getUf()
-                                     + "\nCIDADE: " + pj.getCidade()
-                                     + "\nCEP: " + pj.getCep()
-                                     + "\nENDEREÇO: " + pj.getLogradouro()
-                                     + "\nNÚMERO: " + pj.getNumeroLogradouro()
-                                     + "\nCOMPLEMENTO: " + pj.getComplementoLogradouro());
-                }
-            } else {
-                return;
             }
-        } else {
-            return;
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -446,11 +370,12 @@ public class CadastrarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup bgoSexo;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JComboBox<String> cboUF;
-    private javax.swing.ButtonGroup grupoTipoPessoa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -459,14 +384,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel lblCNPJ;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblErros;
     private javax.swing.JPanel panelInfos;
-    private javax.swing.JRadioButton rboPF;
-    private javax.swing.JRadioButton rboPJ;
     private javax.swing.JFormattedTextField txtCEP;
-    private javax.swing.JFormattedTextField txtCNPJ;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JTextField txtCidade;
