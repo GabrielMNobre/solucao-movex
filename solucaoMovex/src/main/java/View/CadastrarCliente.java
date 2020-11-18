@@ -6,7 +6,7 @@
 package View;
 
 import Model.Cliente;
-import utils.Validador;
+import Utils.Validador;
 
 /**
  *
