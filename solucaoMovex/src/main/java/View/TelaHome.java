@@ -16,6 +16,7 @@ public class TelaHome extends javax.swing.JFrame {
      */
     public TelaHome() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
 
@@ -29,17 +30,7 @@ public class TelaHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtVenda = new javax.swing.JLabel();
-        txtCadastro = new javax.swing.JLabel();
-        btnCadastro = new javax.swing.JButton();
-        txtRelatorio = new javax.swing.JLabel();
-        btnRelatorio = new javax.swing.JButton();
-        txtEstoque = new javax.swing.JLabel();
-        btnEstoque = new javax.swing.JButton();
-        txtSair = new javax.swing.JLabel();
         imgLogomarca = new javax.swing.JLabel();
-        btnSair = new javax.swing.JButton();
-        btnCadastro1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNovaVenda = new javax.swing.JMenuItem();
@@ -52,106 +43,23 @@ public class TelaHome extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txtVenda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtVenda.setForeground(new java.awt.Color(102, 102, 102));
-        txtVenda.setText("Nova Venda");
-
-        txtCadastro.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtCadastro.setForeground(new java.awt.Color(102, 102, 102));
-        txtCadastro.setText("Cadastro");
-
-        btnCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cadastro.png"))); // NOI18N
-
-        txtRelatorio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtRelatorio.setForeground(new java.awt.Color(102, 102, 102));
-        txtRelatorio.setText("Relatório");
-
-        btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/relatorio.png"))); // NOI18N
-
-        txtEstoque.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtEstoque.setForeground(new java.awt.Color(102, 102, 102));
-        txtEstoque.setText("Estoque");
-
-        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/estoque.png"))); // NOI18N
-
-        txtSair.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtSair.setForeground(new java.awt.Color(102, 102, 102));
-        txtSair.setText("Sair");
-
         imgLogomarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logomarca.png"))); // NOI18N
-
-        btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sair.png"))); // NOI18N
-
-        btnCadastro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/venda.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtVenda)
-                    .addComponent(btnCadastro1))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(btnCadastro))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(txtCadastro)))
-                .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(txtRelatorio)
-                        .addGap(55, 55, 55))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRelatorio)
-                        .addGap(38, 38, 38)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(txtEstoque))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnEstoque)))
-                .addContainerGap(39, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnSair)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(imgLogomarca)
-                        .addGap(227, 227, 227))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtSair)
-                        .addGap(22, 22, 22))))
+                .addGap(239, 239, 239)
+                .addComponent(imgLogomarca)
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(149, 149, 149)
                 .addComponent(imgLogomarca)
-                .addGap(53, 53, 53)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtVenda)
-                    .addComponent(txtCadastro)
-                    .addComponent(txtRelatorio)
-                    .addComponent(txtEstoque))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastro)
-                    .addComponent(btnRelatorio)
-                    .addComponent(btnEstoque)
-                    .addComponent(btnCadastro1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(txtSair)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSair)
-                .addContainerGap())
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Opções");
@@ -184,17 +92,11 @@ public class TelaHome extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -236,11 +138,6 @@ public class TelaHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastro;
-    private javax.swing.JButton btnCadastro1;
-    private javax.swing.JButton btnEstoque;
-    private javax.swing.JButton btnRelatorio;
-    private javax.swing.JButton btnSair;
     private javax.swing.JLabel imgLogomarca;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
@@ -250,10 +147,5 @@ public class TelaHome extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmNovaVenda;
     private javax.swing.JMenuItem jmRelatório;
     private javax.swing.JMenuItem jmSair;
-    private javax.swing.JLabel txtCadastro;
-    private javax.swing.JLabel txtEstoque;
-    private javax.swing.JLabel txtRelatorio;
-    private javax.swing.JLabel txtSair;
-    private javax.swing.JLabel txtVenda;
     // End of variables declaration//GEN-END:variables
 }
