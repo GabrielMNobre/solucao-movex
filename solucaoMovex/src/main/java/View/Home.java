@@ -9,15 +9,14 @@ package View;
  *
  * @author castro
  */
-public class TelaHome extends javax.swing.JFrame {
+public class Home extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaHome
      */
-    public TelaHome() {
+    public Home() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,61 +29,48 @@ public class TelaHome extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        imgLogomarca = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jmNovaVenda = new javax.swing.JMenuItem();
-        jmCadastro = new javax.swing.JMenuItem();
-        jmRelatório = new javax.swing.JMenuItem();
-        jmEstoque = new javax.swing.JMenuItem();
-        jmSair = new javax.swing.JMenuItem();
+        btnNovaVenda = new javax.swing.JMenu();
+        btnProduto = new javax.swing.JMenu();
+        btnClientes = new javax.swing.JMenu();
+        btnFuncionario = new javax.swing.JMenu();
+        btnRelatorio = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        imgLogomarca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logomarca.png"))); // NOI18N
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(239, 239, 239)
-                .addComponent(imgLogomarca)
-                .addContainerGap(241, Short.MAX_VALUE))
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(149, 149, 149)
-                .addComponent(imgLogomarca)
-                .addContainerGap(219, Short.MAX_VALUE))
+            .addGap(0, 472, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Opções");
+        btnNovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
+        btnNovaVenda.setText("Nova Venda");
+        jMenuBar1.add(btnNovaVenda);
 
-        jmNovaVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
-        jmNovaVenda.setText("Nova Venda");
-        jMenu1.add(jmNovaVenda);
+        btnProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
+        btnProduto.setText("Produtos");
+        jMenuBar1.add(btnProduto);
 
-        jmCadastro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
-        jmCadastro.setText("Cadastro");
-        jMenu1.add(jmCadastro);
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        btnClientes.setText("Clientes");
+        jMenuBar1.add(btnClientes);
 
-        jmRelatório.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-        jmRelatório.setText("Relatório");
-        jMenu1.add(jmRelatório);
+        btnFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        btnFuncionario.setText("Funcionários");
+        jMenuBar1.add(btnFuncionario);
 
-        jmEstoque.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jmEstoque.setText("Estoque");
-        jMenu1.add(jmEstoque);
-
-        jmSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
-        jmSair.setText("Sair");
-        jMenu1.add(jmSair);
-
-        jMenuBar1.add(jMenu1);
+        btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dinheiro.png"))); // NOI18N
+        btnRelatorio.setText("Relatórios");
+        jMenuBar1.add(btnRelatorio);
 
         setJMenuBar(jMenuBar1);
 
@@ -119,33 +105,32 @@ public class TelaHome extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaHome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaHome().setVisible(true);
+                new Home().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel imgLogomarca;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu btnClientes;
+    private javax.swing.JMenu btnFuncionario;
+    private javax.swing.JMenu btnNovaVenda;
+    private javax.swing.JMenu btnProduto;
+    private javax.swing.JMenu btnRelatorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem jmCadastro;
-    private javax.swing.JMenuItem jmEstoque;
-    private javax.swing.JMenuItem jmNovaVenda;
-    private javax.swing.JMenuItem jmRelatório;
-    private javax.swing.JMenuItem jmSair;
     // End of variables declaration//GEN-END:variables
 }
