@@ -32,6 +32,8 @@ public class Home extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnNovaVenda = new javax.swing.JMenu();
         btnProduto = new javax.swing.JMenu();
+        miConsultaProd = new javax.swing.JMenuItem();
+        miAddProd = new javax.swing.JMenuItem();
         btnClientes = new javax.swing.JMenu();
         miConsultaCli = new javax.swing.JMenuItem();
         miAddCli = new javax.swing.JMenuItem();
@@ -63,6 +65,25 @@ public class Home extends javax.swing.JFrame {
 
         btnProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
         btnProduto.setText("Produtos");
+
+        miConsultaProd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miConsultaProd.setText("Consultar");
+        miConsultaProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultaProdActionPerformed(evt);
+            }
+        });
+        btnProduto.add(miConsultaProd);
+
+        miAddProd.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miAddProd.setText("Adicionar");
+        miAddProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddProdActionPerformed(evt);
+            }
+        });
+        btnProduto.add(miAddProd);
+
         jMenuBar1.add(btnProduto);
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
@@ -159,6 +180,20 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miAddFuncActionPerformed
 
+    private void miConsultaProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaProdActionPerformed
+        
+        AdminProdutos tela = new AdminProdutos();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miConsultaProdActionPerformed
+
+    private void miAddProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddProdActionPerformed
+        
+        CadastrarProduto tela = new CadastrarProduto();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miAddProdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -205,7 +240,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem miAddCli;
     private javax.swing.JMenuItem miAddFunc;
+    private javax.swing.JMenuItem miAddProd;
     private javax.swing.JMenuItem miConsultaCli;
     private javax.swing.JMenuItem miConsultaFunc;
+    private javax.swing.JMenuItem miConsultaProd;
     // End of variables declaration//GEN-END:variables
 }
