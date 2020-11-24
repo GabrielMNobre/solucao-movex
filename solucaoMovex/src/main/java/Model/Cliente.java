@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package Model;
 
 /**
  *
  * @author gabriel
  */
-public abstract class Pessoa {
+public class Cliente {
     
     private String nome;
     private String email;
+    private String sexo;
+    private String cpf;
     private String telefone;
     private String celular;
     private String uf;
@@ -21,6 +23,21 @@ public abstract class Pessoa {
     private String logradouro;
     private int numeroLogradouro;
     private String complementoLogradouro;
+    
+    public Cliente(String dados[]) {
+        setNome(dados[0]);
+        setEmail(dados[1]);
+        setSexo(dados[2]);
+        setCpf(dados[3]);
+        setTelefone(dados[4]);
+        setCelular(dados[5]);
+        setUf(dados[6]);
+        setCidade(dados[7]);
+        setCep(dados[8]);
+        setLogradouro(dados[9]);
+        setNumeroLogradouro(Integer.parseInt(dados[10]));
+        setComplementoLogradouro(dados[11]);
+    }
 
     public String getNome() {
         return nome;
@@ -36,6 +53,22 @@ public abstract class Pessoa {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getTelefone() {
