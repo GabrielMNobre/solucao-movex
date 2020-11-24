@@ -9,6 +9,6 @@ package DAO;
  *
  * @author Ayrto
  */
-public class PessoaDAO {
+public class ClienteDAO {
     
 }

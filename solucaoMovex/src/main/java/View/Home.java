@@ -33,10 +33,15 @@ public class Home extends javax.swing.JFrame {
         btnNovaVenda = new javax.swing.JMenu();
         btnProduto = new javax.swing.JMenu();
         btnClientes = new javax.swing.JMenu();
+        miConsultaCli = new javax.swing.JMenuItem();
+        miAddCli = new javax.swing.JMenuItem();
         btnFuncionario = new javax.swing.JMenu();
+        miConsultaFunc = new javax.swing.JMenuItem();
+        miAddFunc = new javax.swing.JMenuItem();
         btnRelatorio = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("HOME");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -62,10 +67,48 @@ public class Home extends javax.swing.JFrame {
 
         btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
         btnClientes.setText("Clientes");
+
+        miConsultaCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        miConsultaCli.setText("Consultar");
+        miConsultaCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultaCliActionPerformed(evt);
+            }
+        });
+        btnClientes.add(miConsultaCli);
+
+        miAddCli.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        miAddCli.setText("Adicionar");
+        miAddCli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddCliActionPerformed(evt);
+            }
+        });
+        btnClientes.add(miAddCli);
+
         jMenuBar1.add(btnClientes);
 
         btnFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
         btnFuncionario.setText("Funcionários");
+
+        miConsultaFunc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        miConsultaFunc.setText("Consultar");
+        miConsultaFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultaFuncActionPerformed(evt);
+            }
+        });
+        btnFuncionario.add(miConsultaFunc);
+
+        miAddFunc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        miAddFunc.setText("Adicionar");
+        miAddFunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAddFuncActionPerformed(evt);
+            }
+        });
+        btnFuncionario.add(miAddFunc);
+
         jMenuBar1.add(btnFuncionario);
 
         btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dinheiro.png"))); // NOI18N
@@ -87,6 +130,34 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void miConsultaCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaCliActionPerformed
+        
+        AdminClientes tela = new AdminClientes();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miConsultaCliActionPerformed
+
+    private void miAddCliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddCliActionPerformed
+        
+        CadastrarCliente tela = new CadastrarCliente();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miAddCliActionPerformed
+
+    private void miConsultaFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultaFuncActionPerformed
+        
+        AdminFuncionario tela = new AdminFuncionario();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miConsultaFuncActionPerformed
+
+    private void miAddFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAddFuncActionPerformed
+        
+        CadastrarFuncionario tela = new CadastrarFuncionario();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miAddFuncActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,5 +203,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenu btnRelatorio;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem miAddCli;
+    private javax.swing.JMenuItem miAddFunc;
+    private javax.swing.JMenuItem miConsultaCli;
+    private javax.swing.JMenuItem miConsultaFunc;
     // End of variables declaration//GEN-END:variables
 }
