@@ -5,7 +5,7 @@
  */
 package Utils;
 
-import static DAO.FuncionarioDAO.conexao;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,7 +16,9 @@ import javax.swing.JOptionPane;
  */
 public class Conector {
     
-    public static boolean conectaBanco() {
+    public static Connection conexao = null;
+    
+    public static Connection conectaBanco() {
         
         String URL = "jdbc:mysql://localhost:3306/solucao_movex?useTimezone=true&serverTimezone=UTC&useSSL=false";
         String LOGIN = "gabriel";
@@ -25,14 +27,14 @@ public class Conector {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-            return true;
         } catch(ClassNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Driver não encontrado");
-            return false;
+            conexao = null;
         } catch(SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-            return false;
+            conexao = null;
         }
+        return conexao;
     }
     
 }

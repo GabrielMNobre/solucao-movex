@@ -19,14 +19,14 @@ import java.util.ArrayList;
  */
 public class FuncionarioDAO {
     
-    public static Connection conexao = null;
     public static PreparedStatement st;
     public static ResultSet resultado = null;
     
     public static boolean insereInfo(Funcionario func) {
+        Connection conexao = Conector.conectaBanco();
         int affectedRows = 0;
         
-        if(Conector.conectaBanco()) {
+        if(conexao != null) {
             try {
                 st = conexao.prepareStatement("INSERT INTO funcionario(nome, cargo, login, senha) "
                                             + "VALUES(?, ?, ?, ?)");
@@ -34,6 +34,7 @@ public class FuncionarioDAO {
                 st.setString(2, func.getCargo());
                 st.setString(3, func.getLogin());
                 st.setString(4, func.getSenha());
+                System.out.println(st);
                 affectedRows = st.executeUpdate();
                 return affectedRows > 0;
             } catch(SQLException e) {
@@ -61,8 +62,10 @@ public class FuncionarioDAO {
     }
     
     public static ArrayList<Funcionario> selectAll() {
+        Connection conexao = Conector.conectaBanco();
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-        if(Conector.conectaBanco()) {
+        
+        if(conexao != null) {
             try {
                st = conexao.prepareStatement("SELECT * FROM funcionario WHERE ativo <> false");
                resultado = st.executeQuery();
@@ -104,8 +107,10 @@ public class FuncionarioDAO {
     } 
     
     public static ArrayList<Funcionario> selectByName(String name) {
+        Connection conexao = Conector.conectaBanco();
         ArrayList<Funcionario> listaFuncionarios = new ArrayList<>();
-        if(Conector.conectaBanco()) {
+        
+        if(conexao != null) {
             try {
                st = conexao.prepareStatement("SELECT * FROM funcionario WHERE nome LIKE ? AND ativo <> false");
                st.setString(1, "%" + name + "%");
@@ -150,9 +155,10 @@ public class FuncionarioDAO {
     
     public static Funcionario selectById(int id) {
         
+        Connection conexao = Conector.conectaBanco();
         Funcionario retorno = new Funcionario();
         
-        if(Conector.conectaBanco()) {
+        if(conexao != null) {
             try {
                st = conexao.prepareStatement("SELECT * FROM funcionario WHERE codigo_funcionario = ? AND ativo <> false");
                st.setInt(1, id);
@@ -196,9 +202,10 @@ public class FuncionarioDAO {
     }
     
     public static boolean update(Funcionario func, int id) {
+        Connection conexao = Conector.conectaBanco();
         int affectedRows = 0;
         
-        if(Conector.conectaBanco()) {
+        if(conexao != null) {
             try {
                 st = conexao.prepareStatement("UPDATE funcionario SET nome = ?, "
                                                                    + "cargo = ?, "
@@ -237,9 +244,10 @@ public class FuncionarioDAO {
     }
     
     public static boolean delete(int id) {
+        Connection conexao = Conector.conectaBanco();
         int affectedRows = 0;
         
-        if(Conector.conectaBanco()) {
+        if(conexao != null) {
             try {
                 st = conexao.prepareStatement("UPDATE funcionario SET ativo = false WHERE codigo_funcionario = ? ");
                 st.setInt(1, id);

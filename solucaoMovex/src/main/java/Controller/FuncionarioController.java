@@ -7,7 +7,6 @@ package Controller;
 
 import DAO.FuncionarioDAO;
 import Model.Funcionario;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
