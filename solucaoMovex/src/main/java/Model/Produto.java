@@ -19,21 +19,21 @@ public class Produto {
     private int codigoBarras;
     private double preco;
     private String cor;
-    private String observacoes;
+    private String descricao;
     private String urlImagem;
     private String departamento;
+    private boolean ativo;
+
+    public boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
     
     //Construtor
-    public Produto(String dados[]){
-        setId(Integer.parseInt(dados[0]));
-        setPreco(Double.parseDouble(dados[1]));
-        setCor(dados[2]);
-        setDepartamento(dados[3]);
-        setNome(dados[4]);
-        setCodigoBarras(Integer.parseInt(dados[5]));
-        setEstoqueMinimo(Integer.parseInt(dados[6]));
-        setEstoqueAtual(Integer.parseInt(dados[7]));
-    } 
+    public Produto(){} 
 
     //Métodos Acessores
 
@@ -88,11 +88,11 @@ public class Produto {
         this.cor = pCor;
     }
     
-     public String getObservacoes(){
-        return observacoes;
+     public String getDescricao(){
+        return descricao;
     }
-    public void setObservacoes(String pObservacoes){
-        this.observacoes = pObservacoes;
+    public void setDescricao(String pDescricao){
+        this.descricao = pDescricao;
     }
     
      public String getUrlImagem(){
