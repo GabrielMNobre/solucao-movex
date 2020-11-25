@@ -5,6 +5,11 @@
  */
 package View;
 
+import Controller.FuncionarioController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gabriel
@@ -33,11 +38,12 @@ public class AdminFuncionario extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         btnPequisa = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFunc = new javax.swing.JTable();
         btnBusca = new javax.swing.JButton();
         btnAdiciona = new javax.swing.JButton();
         btnAltera = new javax.swing.JButton();
         btnDeleta = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administrar Funcionários");
@@ -47,18 +53,36 @@ public class AdminFuncionario extends javax.swing.JFrame {
         jLabel1.setText("Filtrar por nome:");
 
         btnPequisa.setText("Pesquisar");
+        btnPequisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPequisaActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFunc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Cargo"
+                "ID", "Nome", "Cargo", "Login"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblFunc);
 
         btnBusca.setText("Exibir Todos");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
 
         btnAdiciona.setText("Adicionar");
         btnAdiciona.addActionListener(new java.awt.event.ActionListener() {
@@ -68,14 +92,31 @@ public class AdminFuncionario extends javax.swing.JFrame {
         });
 
         btnAltera.setText("Alterar");
+        btnAltera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlteraActionPerformed(evt);
+            }
+        });
 
         btnDeleta.setText("Deletar");
+        btnDeleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletaActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -83,17 +124,18 @@ public class AdminFuncionario extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPequisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBusca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
                     .addComponent(btnAdiciona, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAltera, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDeleta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnDeleta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta, btnVoltar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,14 +154,15 @@ public class AdminFuncionario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnAltera, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDeleta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDeleta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta, btnVoltar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +177,8 @@ public class AdminFuncionario extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -146,6 +190,71 @@ public class AdminFuncionario extends javax.swing.JFrame {
         tela.setVisible(true);
         
     }//GEN-LAST:event_btnAdicionaActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblFunc.getModel();
+        ArrayList<String[]> listaFunc = FuncionarioController.selectAll();
+        tabela.setNumRows(0);
+        tblFunc.getColumnModel().getColumn(0).setPreferredWidth(3);
+        
+        for(String[] func : listaFunc) {
+            tabela.addRow(func);
+        }
+        
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnPequisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPequisaActionPerformed
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblFunc.getModel();
+        ArrayList<String[]> listaFunc = FuncionarioController.selectByName(txtNome.getText());
+        tabela.setNumRows(0);
+        tblFunc.getColumnModel().getColumn(0).setPreferredWidth(3);
+        
+        for(String[] func : listaFunc) {
+            tabela.addRow(func);
+        }
+        
+    }//GEN-LAST:event_btnPequisaActionPerformed
+
+    private void btnAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraActionPerformed
+        
+        int linha = tblFunc.getSelectedRow();
+        int idFunc = Integer.parseInt(tblFunc.getValueAt(linha, 0).toString());
+        String[] dados = FuncionarioController.selectById(idFunc);
+        
+        AlterarFuncionario tela = new AlterarFuncionario(dados);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_btnAlteraActionPerformed
+
+    private void btnDeletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaActionPerformed
+        
+        int linha = tblFunc.getSelectedRow();
+        int id = Integer.parseInt(tblFunc.getValueAt(linha, 0).toString());
+        
+        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir este registro?", 
+           "Excluir registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            boolean service = FuncionarioController.delete(id);
+            
+            if(service) {
+                JOptionPane.showMessageDialog(null, "Os dados foram excluídos com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Houve falaha com a comunicação com o banco."
+                                                  + "\nTente novamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Exclusão Cancelada!");
+        }
+        
+    }//GEN-LAST:event_btnDeletaActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,10 +297,11 @@ public class AdminFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnDeleta;
     private javax.swing.JButton btnPequisa;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblFunc;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
