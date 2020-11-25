@@ -11,20 +11,27 @@ package Model;
  */
 public class Funcionario {
     
+    private int id;
     private String nome;
-    private String sobrenome;
-    private String fullName;
     private String login;
     private String senha;
     private String cargo;
     
+    public Funcionario(){}
+    
     public Funcionario(String dados[]) {
         setNome(dados[0]);
-        setSobrenome(dados[1]);
-        setFullName(dados[0] + " " + dados[1]);
-        setLogin(dados[2]);
-        setSenha(dados[3]);
-        setCargo(dados[4]);
+        setLogin(dados[1]);
+        setSenha(dados[2]);
+        setCargo(dados[3]);
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -33,22 +40,6 @@ public class Funcionario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getLogin() {
