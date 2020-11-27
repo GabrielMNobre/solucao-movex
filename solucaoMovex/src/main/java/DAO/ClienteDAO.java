@@ -73,7 +73,7 @@ public class ClienteDAO {
         
         if(conexao != null) {
             try {
-               st = conexao.prepareStatement("SELECT * FROM cliente");
+               st = conexao.prepareStatement("SELECT * FROM cliente WHERE ativo <> false");
                resultado = st.executeQuery();
                
                while(resultado.next()) {
@@ -120,7 +120,7 @@ public class ClienteDAO {
         
         if(conexao != null) {
             try {
-               st = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ? ");
+               st = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ? AND ativo <> false ");
                st.setString(1, cpf);
                resultado = st.executeQuery();
                
@@ -167,7 +167,7 @@ public class ClienteDAO {
         
         if(conexao != null) {
             try {
-               st = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ? ");
+               st = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ? AND ativo <> false");
                st.setString(1, cpf);
                resultado = st.executeQuery();
                
@@ -220,55 +220,6 @@ public class ClienteDAO {
             try {
                st = conexao.prepareStatement("SELECT * FROM cliente WHERE nome LIKE ? ");
                st.setString(1, "%" + nome + "%");
-               
-               resultado = st.executeQuery();
-          
-               while(resultado.next()) {
-                   Cliente cli = new Cliente();
-                   
-                   cli.setNome(resultado.getString("nome"));
-                   cli.setCpf(resultado.getString("cpf"));
-                   cli.setEmail(resultado.getString("email"));
-                   cli.setTelefone(resultado.getString("telefone"));
-                   cli.setLogradouro(resultado.getString("endereco"));
-                   cli.setStatus(resultado.getInt("ativo"));
-                   
-                   listaClientes.add(cli);
-               }
-            } catch(SQLException e) {
-               listaClientes = null;
-            } finally {
-                if(st != null) {
-                    try {
-                        st.close();
-                    } catch(SQLException e) {
-                        System.out.println(e);
-                    }
-                }
-                
-                if(conexao != null) {
-                    try {
-                        conexao.close();
-                    } catch(SQLException e) {
-                        System.out.println(e);
-                    }
-                }
-            }
-        } else {
-           listaClientes = null;
-        }
-        
-        return listaClientes;
-    }
-    
-    public static ArrayList<Cliente> selectByStatus(int status) {
-        Connection conexao = Conector.conectaBanco();
-        ArrayList<Cliente> listaClientes = new ArrayList<>();
-        
-        if(conexao != null) {
-            try {
-               st = conexao.prepareStatement("SELECT * FROM cliente WHERE ativo = ?");
-               st.setInt(1, status);
                
                resultado = st.executeQuery();
           

@@ -47,10 +47,6 @@ public class AdminClientes extends javax.swing.JFrame {
         btnAltera = new javax.swing.JButton();
         btnDeleta = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        btnAtivo = new javax.swing.JButton();
-        btnInativo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administrador de Clientes");
@@ -136,30 +132,12 @@ public class AdminClientes extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Apenas usuários ativos");
-
-        jLabel4.setText("Apenas usuários inativos");
-
-        btnAtivo.setText("Pesquisar");
-        btnAtivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtivoActionPerformed(evt);
-            }
-        });
-
-        btnInativo.setText("Pesquisar");
-        btnInativo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInativoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +154,10 @@ public class AdminClientes extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
                                         .addComponent(btnAltera)
-                                        .addGap(151, 151, 151))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnBuscaNome)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel4))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -189,20 +166,12 @@ public class AdminClientes extends javax.swing.JFrame {
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBuscaCPF)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel1))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(576, 576, 576)
-                        .addComponent(btnDeleta)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnInativo)
-                            .addComponent(btnAtivo))))
+                        .addComponent(btnDeleta)
+                        .addGap(34, 34, 34)))
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
@@ -218,16 +187,12 @@ public class AdminClientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscaCPF)
                     .addComponent(jLabel2)
-                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnAtivo))
+                    .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscaNome)
-                    .addComponent(jLabel4)
-                    .addComponent(btnInativo))
+                    .addComponent(btnBuscaNome))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAltera)
@@ -342,32 +307,6 @@ public class AdminClientes extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDeletaActionPerformed
 
-    private void btnAtivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtivoActionPerformed
-
-        DefaultTableModel tabela = (DefaultTableModel) tblClientes.getModel();
-        ArrayList<String[]> listaClientes = ClienteController.selectByStatus(1);
-        tabela.setNumRows(0);
-        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(3);
-        
-        for(String[] cli : listaClientes) {
-            tabela.addRow(cli);
-        }
-        
-    }//GEN-LAST:event_btnAtivoActionPerformed
-
-    private void btnInativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInativoActionPerformed
-        
-        DefaultTableModel tabela = (DefaultTableModel) tblClientes.getModel();
-        ArrayList<String[]> listaClientes = ClienteController.selectByStatus(0);
-        tabela.setNumRows(0);
-        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(3);
-        
-        for(String[] cli : listaClientes) {
-            tabela.addRow(cli);
-        }
-        
-    }//GEN-LAST:event_btnInativoActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -406,17 +345,13 @@ public class AdminClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdiciona;
     private javax.swing.JButton btnAltera;
-    private javax.swing.JButton btnAtivo;
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBuscaCPF;
     private javax.swing.JButton btnBuscaNome;
     private javax.swing.JButton btnDeleta;
-    private javax.swing.JButton btnInativo;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblClientes;

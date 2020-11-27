@@ -80,25 +80,6 @@ public class ClienteController {
         return retorno;
     }
     
-    public static ArrayList<String[]> selectByStatus(int status) {
-        
-        ArrayList<Cliente> listaClientes = ClienteDAO.selectByStatus(status);
-        ArrayList<String[]> retorno = new ArrayList<>();
-        
-        for(Cliente cli : listaClientes) {
-            retorno.add(new String[] {
-                cli.getNome(),
-                cli.getCpf(),
-                cli.getEmail(),
-                cli.getTelefone(),
-                cli.getLogradouro(),
-                cli.getStatus() == 1 ? "Ativo" : "Inativo"
-            });
-        }
-        
-        return retorno;
-    }
-    
     public static String[] select(String cpf) {
         
         Cliente cli = ClienteDAO.select(cpf);
