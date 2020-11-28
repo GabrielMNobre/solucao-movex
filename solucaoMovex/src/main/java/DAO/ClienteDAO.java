@@ -177,14 +177,13 @@ public class ClienteDAO {
           
                while(resultado.next()) {
                    Cliente cli = new Cliente();
-                   
                    cli.setNome(resultado.getString("nome"));
                    cli.setCpf(resultado.getString("cpf"));
                    cli.setEmail(resultado.getString("email"));
                    cli.setTelefone(resultado.getString("telefone"));
                    cli.setLogradouro(resultado.getString("endereco"));
                    cli.setStatus(resultado.getInt("ativo"));
-                   
+                   cli.setCodigoCliente(Integer.parseInt(resultado.getString("codigo_cliente")));                   
                    listaClientes.add(cli);
                }
             } catch(SQLException e) {

@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,9 +20,16 @@ public class Venda {
     private double total;
     private double subtotal;
     private String status;
-    private int quantidade;
-    private double precoProduto;
-    private double totalProduto;
+    private ArrayList<String[]> pedidoDetalhe = new ArrayList<>();
+
+    public ArrayList<String[]> getPedidoDetalhe() {
+        return pedidoDetalhe;
+    }
+
+    public void setPedidoDetalhe(String codigoPedido, String codigoProduto, String quantidade, String preco, String total) {
+        this.pedidoDetalhe.add(new String[] {
+        codigoPedido, codigoProduto, quantidade, preco, total});
+    }
 
     public Venda() {
     }
@@ -89,28 +97,6 @@ public class Venda {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public double getPrecoProduto() {
-        return precoProduto;
-    }
-
-    public void setPrecoProduto(double precoProduto) {
-        this.precoProduto = precoProduto;
-    }
-
-    public double getTotalProduto() {
-        return totalProduto;
-    }
-
-    public void setTotalProduto(double totalProduto) {
-        this.totalProduto = totalProduto;
-    }
+    
+    
 }

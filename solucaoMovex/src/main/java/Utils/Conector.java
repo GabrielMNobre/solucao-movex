@@ -21,8 +21,8 @@ public class Conector {
     public static Connection conectaBanco() {
         
         String URL = "jdbc:mysql://localhost:3306/solucao_movex?useTimezone=true&serverTimezone=UTC&useSSL=false";
-        String LOGIN = "gabriel";
-        String SENHA = "24102002";
+        String LOGIN = "root";
+        String SENHA = "wte7841";
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");

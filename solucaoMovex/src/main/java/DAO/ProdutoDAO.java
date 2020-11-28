@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.Produto;
+import Utils.Conector;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,25 +20,23 @@ import java.util.ArrayList;
  * @author Ayrto
  */
 public class ProdutoDAO {
+        public static Conector conector;
     
-        static String URL = "jdbc:mysql://localhost:3306/solucao_movex?useTimezone=true&serverTimezone=UTC&useSSL=false";
-        static String LOGIN = "root";
-        static String SENHA = "wte7841";
+        public void ProdutoDAO()
+        {
+            Conector conector = new Conector();
+        }
         
         public static boolean salvar(Produto obj) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
-
+            
             try {
 
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-
                 instrucaoSQL = conexao.prepareStatement("INSERT INTO produto (descricao, nome, categoria, preco, cor, url_imagem, estoque_minimo, estoque_atual, ativo, codigo_barras) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-                                                        , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
+                , Statement.RETURN_GENERATED_KEYS);  //Caso queira retornar o ID
 
                 //Adiciono os parâmetros ao meu comando SQL
                 
@@ -61,8 +60,8 @@ public class ProdutoDAO {
                     retorno = false;
                 }
 
-            }catch (SQLException | ClassNotFoundException ex ) {
-                System.out.println(ex.getMessage());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
                 retorno = false;
             }finally{
 
@@ -85,14 +84,10 @@ public class ProdutoDAO {
         public static boolean alterar(Produto obj) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
-
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
                 instrucaoSQL = conexao.prepareStatement("UPDATE produto set descricao = ?, nome = ?, categoria = ?, preco = ?, cor = ?, url_imagem = ?, estoque_minimo = ?, estoque_atual = ?, ativo = ?, codigo_barras = ? WHERE codigo_produto = ?");
                 //Adiciono os parâmetros ao meu comando SQL
@@ -118,7 +113,7 @@ public class ProdutoDAO {
                     retorno = false;
                 }
 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 System.out.println(ex.getMessage());
                 retorno = false;
             }finally{
@@ -142,14 +137,10 @@ public class ProdutoDAO {
         public static boolean deletar(int id) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
-
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
 
                 instrucaoSQL = conexao.prepareStatement("UPDATE produto set ativo = false WHERE codigo_produto = ?");
                 //Adiciono os parâmetros ao meu comando SQL
@@ -165,7 +156,7 @@ public class ProdutoDAO {
                     retorno = false;
                 }
 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 System.out.println(ex.getMessage());
                 retorno = false;
             }finally{
@@ -189,14 +180,10 @@ public class ProdutoDAO {
         public static  ArrayList<Produto> consultaTodos() {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
-
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
                 PreparedStatement consulta = conexao.prepareStatement("SELECT * FROM produto WHERE ativo = 1");
                 ResultSet resultado = consulta.executeQuery();
                 ArrayList<Produto> produtos = new ArrayList<>();
@@ -217,7 +204,7 @@ public class ProdutoDAO {
                 }
                 return produtos;
                 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 
             }finally{
 
@@ -239,14 +226,11 @@ public class ProdutoDAO {
         public static  ArrayList<Produto> consultaNome(String nome) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
 
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
                 PreparedStatement consulta = conexao.prepareStatement("SELECT * FROM produto WHERE nome LIKE ? AND ativo = 1");
                 consulta.setString(1, nome+"%");
                 ResultSet resultado = consulta.executeQuery();
@@ -268,7 +252,7 @@ public class ProdutoDAO {
                 }
                 return produtos;
                 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 
             }finally{
 
@@ -290,15 +274,12 @@ public class ProdutoDAO {
         public static  ArrayList<Produto> consultaCodigo(int codigo) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
 
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
-                PreparedStatement consulta = conexao.prepareStatement("SELECT * FROM produto WHERE codigo_produto = ?");
+                PreparedStatement consulta = conexao.prepareStatement("SELECT * FROM produto WHERE codigo_produto = ? and ativo = 1");
                 consulta.setInt(1, codigo);
                 ResultSet resultado = consulta.executeQuery();
                 ArrayList<Produto> produtos = new ArrayList<>();
@@ -319,7 +300,7 @@ public class ProdutoDAO {
                 }
                 return produtos;
                 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 
             }finally{
 
@@ -341,14 +322,11 @@ public class ProdutoDAO {
         public static Produto consultaCodigoAlterar(int codigo) {
         
             boolean retorno = false;
-            Connection conexao = null;
+            Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
 
             try {
 
-               Class.forName("com.mysql.cj.jdbc.Driver");
-               //Obs: A classe GerenciadorConexao já carrega o Driver e define os parâmetros de conexão
-                conexao = DriverManager.getConnection(URL, LOGIN, SENHA);
                 PreparedStatement consulta = conexao.prepareStatement("SELECT * FROM produto WHERE codigo_produto = ?");
                 consulta.setInt(1, codigo);
                 ResultSet resultado = consulta.executeQuery();
@@ -368,7 +346,7 @@ public class ProdutoDAO {
                 }
                 return produto;
                 
-            }catch (SQLException | ClassNotFoundException ex ) {
+            }catch (SQLException ex ) {
                 
             }finally{
 

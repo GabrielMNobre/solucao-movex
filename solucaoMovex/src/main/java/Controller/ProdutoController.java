@@ -77,6 +77,27 @@ public class ProdutoController {
         }
     }
         
+    private void preencheTabelaVenda (ArrayList<Produto> produtos, JTable tabela)
+    {
+        if (produtos.size() > 0) {
+                DefaultTableModel tmProdutos = new DefaultTableModel();
+                tmProdutos.addColumn("Codigo");
+                tmProdutos.addColumn("Nome");
+                tmProdutos.addColumn("Descricao");
+                tmProdutos.addColumn("Departamento");
+                tmProdutos.addColumn("Preço");
+                tmProdutos.addColumn("Qtd Estoque");
+                
+                tabela.setModel(tmProdutos);
+                tmProdutos.setRowCount(0);
+            
+            for (Produto produto : produtos) {
+                tmProdutos.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getDescricao(), produto.getDepartamento(), 
+                produto.getPreco(), produto.getEstoqueAtual()});
+            }
+        }
+    }
+    
     public void exibirTodos (JTable tabela)
     {
         ArrayList<Produto> produtos = new ArrayList<>();
@@ -84,18 +105,28 @@ public class ProdutoController {
         preencheTabela(produtos, tabela);    
     }
     
-    public void exibePorCodigo(int codigo, JTable tabela)
+    public void exibePorCodigo(int codigo, JTable tabela, int tipoConsulta)
     {
         ArrayList<Produto> produtos = new ArrayList<>();
         produtos = ProdutoDAO.consultaCodigo(codigo);
-        preencheTabela(produtos, tabela);  
+        
+        if (tipoConsulta == 1) {
+            preencheTabela(produtos, tabela);
+        } else {
+            preencheTabelaVenda(produtos, tabela);
+        }  
     }
     
-    public void exibePorNome(String nome, JTable tabela)
+    public void exibePorNome(String nome, JTable tabela, int tipoConsulta)
     {
         ArrayList<Produto> produtos = new ArrayList<>();
         produtos = ProdutoDAO.consultaNome(nome);
-        preencheTabela(produtos, tabela);  
+        if (tipoConsulta == 1) {
+            preencheTabela(produtos, tabela);
+        } else {
+            preencheTabelaVenda(produtos, tabela);
+        }
+          
     }
     
     public String[] consultaCodigoAlterar(int idProduto)
