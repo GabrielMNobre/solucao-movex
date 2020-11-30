@@ -33,6 +33,7 @@ public class FinalizarVenda extends javax.swing.JFrame {
         tmPayments.addColumn("Valor");
         tblPagamentos.setModel(tmPayments);
         this.setExtendedState(MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -87,7 +88,8 @@ public class FinalizarVenda extends javax.swing.JFrame {
         jmEstoque = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Finalizar Venda");
 
         txtNumeroPedido.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtNumeroPedido.setPreferredSize(new java.awt.Dimension(0, 23));

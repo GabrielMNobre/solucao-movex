@@ -75,7 +75,7 @@ public class VendaDAO {
             
             try {
 
-                instrucaoSQL = conexao.prepareStatement("INSERT INTO pedido_mestre (codigo_vendedor, codigo_cliente, frete, desconto, subtotal, total, status) VALUES(?, ?, ?, ?, ?, ?, ?)"
+                instrucaoSQL = conexao.prepareStatement("INSERT INTO pedido_mestre (codigo_vendedor, codigo_cliente, frete, desconto, subtotal, total, status, data_criacao) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"
                 , Statement.RETURN_GENERATED_KEYS);
 
                 instrucaoSQL.setInt(1, obj.getCodigoVendedor());
@@ -85,6 +85,7 @@ public class VendaDAO {
                 instrucaoSQL.setDouble(5, obj.getSubtotal());
                 instrucaoSQL.setDouble(6, obj.getTotal());
                 instrucaoSQL.setString(7, obj.getStatus());
+                instrucaoSQL.setDate(8, new java.sql.Date(obj.getDataVenda().getTime()));
                 
                 int linhasAfetadas = instrucaoSQL.executeUpdate();
 
