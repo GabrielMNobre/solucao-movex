@@ -17,6 +17,8 @@ public class Home extends javax.swing.JFrame {
     public Home() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        Login tela = new Login();
+        tela.setVisible(true);
     }
 
     /**
