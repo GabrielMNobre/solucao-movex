@@ -11,6 +11,7 @@ import Model.Funcionario;
 import Model.Pagamento;
 import Model.Venda;
 import static View.VendaNova.model;
+import java.util.Date;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -45,7 +46,7 @@ public class VendaController {
         DefaultComboBoxModel model = new DefaultComboBoxModel(listagem);
         combo.setModel(model);
     }
-    public static String[] finalizaVenda(String cliente, String vendedor, JTable carrinho)
+    public static String[] finalizaVenda(String cliente, String vendedor, Date dataVenda, JTable carrinho)
     {   
         double totalPedido = 0;
         Venda venda = new Venda();
@@ -69,6 +70,7 @@ public class VendaController {
         venda.setSubtotal(totalPedido);
         venda.setTotal(totalPedido);
         venda.setStatus("Aberto");
+        venda.setDataVenda(dataVenda);
         return VendaDAO.salvar(venda);        
     }
     

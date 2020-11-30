@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.Date;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JMenu;
@@ -21,6 +22,15 @@ public class Venda {
     private double subtotal;
     private String status;
     private ArrayList<String[]> pedidoDetalhe = new ArrayList<>();
+    private Date dataVenda;
+
+    public Date getDataVenda() {
+        return dataVenda;
+    }
+
+    public void setDataVenda(Date dataVenda) {
+        this.dataVenda = dataVenda;
+    }
 
     public ArrayList<String[]> getPedidoDetalhe() {
         return pedidoDetalhe;
