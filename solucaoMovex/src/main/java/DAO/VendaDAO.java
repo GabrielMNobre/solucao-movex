@@ -71,7 +71,7 @@ public class VendaDAO {
             Connection conexao = conector.conectaBanco();
             PreparedStatement instrucaoSQL = null;
             ArrayList<Integer> pedidosIncluidos = new ArrayList<>();
-            String[] status = new String[2];
+            String[] status = new String[3];
             
             try {
 
@@ -121,6 +121,7 @@ public class VendaDAO {
                     }
                     status[0] = "sucesso";
                     status[1] = "O pedido foi inserido com sucesso, ID: "+codigoPedido;
+                    status[2] = Integer.toString(codigoPedido);
                 }else{
                     status[0] = "falha";
                     status[1] = "Não foi possível inserir o seu pedido, verifique os dados informados.";

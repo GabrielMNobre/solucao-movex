@@ -21,9 +21,15 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Ayrto
+ * @author Ayrton
  */
 public class VendaController {
+    
+    /**
+     * 
+     * @author Ayrton
+     * @return String[] - Retorna um vetor de String com id e nome dos funcionários
+     */
     public static String[] populaVendedores()
     {
         FuncionarioController funcionario = new FuncionarioController();
@@ -36,6 +42,11 @@ public class VendaController {
         }
         return listagem;        
     }
+    /**
+     * @author Ayrton
+     * @param lista - ArrayList de String[] - Recebe a lista com id e nome do cliente para popular o combobox
+     * @param combo - JComboBox para retornar o valor da consulta para ele
+     */
     public static void populaClientes (ArrayList<String[]> lista, JComboBox combo) {
         String[] listagem = new String[lista.size()];
         int n = 0;
@@ -46,6 +57,15 @@ public class VendaController {
         DefaultComboBoxModel model = new DefaultComboBoxModel(listagem);
         combo.setModel(model);
     }
+    /**
+     * @author Ayrton
+     * @param cliente - String - ID do cliente
+     * @param vendedor - String - ID do vendedor
+     * @param dataVenda - Date - Data da venda
+     * @param carrinho - JTable - Produtos escolhidos pelo cliente
+     * @return String[] - String[] -  String[0] - "sucesso" / "falha"
+     * String[1] - Texto do sucesso ou da falha / String[2] - ID da venda, no caso de sucesso.
+     */
     public static String[] finalizaVenda(String cliente, String vendedor, Date dataVenda, JTable carrinho)
     {   
         double totalPedido = 0;
@@ -74,6 +94,14 @@ public class VendaController {
         return VendaDAO.salvar(venda);        
     }
     
+    /**
+     * @author Ayrton
+     * @param numeroPedido - int - número do pedido
+     * @param vendedor - JTextField - para popular o nome do vendedor
+     * @param cliente - JTextField - para popular o nome do cliente
+     * @param valorTotal - JTextField - para popular o valor total da compra
+     * @return boolean - true: "Pedido localizado", false:"Pedido não localizado"
+     */
     public static boolean consultaPedido(int numeroPedido, JTextField vendedor, JTextField cliente, JTextField valorTotal)
     {
         Venda obj = new Venda();
@@ -90,11 +118,22 @@ public class VendaController {
         }
     }
     
+    /**
+     * @author Ayrton
+     * @param numeroPedido - int com o número do pedido
+     * @return boolean - true:"Compra cancelada", false: "Não foi possível cancelar a compra"
+     */
     public static boolean cancelaCompra (int numeroPedido)
     {
         return VendaDAO.cancelaCompra(numeroPedido);
     }
     
+    /**
+     * @author Ayrton
+     * @param numeroPedido - int com o número do pedido.
+     * @param pagamentos - JTable com a descrição dos pagamentos
+     * @return boolean - true: "Pedido concluído com sucesso", false:"Não foi possível concluir o pedido"
+     */
     public static boolean finalizaCompra (int numeroPedido, JTable pagamentos) {
         ArrayList<Pagamento> payments = new ArrayList<>();
         
