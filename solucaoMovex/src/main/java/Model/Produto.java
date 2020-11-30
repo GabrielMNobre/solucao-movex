@@ -88,11 +88,11 @@ public class Produto {
         this.cor = pCor;
     }
     
-     public String getObservacoes(){
+     public String getDescricao(){
         return descricao;
     }
-    public void setObservacoes(String pObservacoes){
-        this.descricao = pObservacoes;
+    public void setDescricao(String pDescricao){
+        this.descricao = pDescricao;
     }
     
      public String getUrlImagem(){
