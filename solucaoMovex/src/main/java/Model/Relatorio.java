@@ -16,9 +16,10 @@ public class Relatorio {
     private Date dataInicial;
     private Date dataFinal;
     private int numeroPedido;
-    private String codVendedor;
-    private String codCliente;
+    private int codVendedor;
+    private int codCliente;
     private double valorTotal;
+    private String status;
 
     public Date getDataInicial() {
         return dataInicial;
@@ -44,19 +45,19 @@ public class Relatorio {
         this.numeroPedido = numeroPedido;
     }
 
-    public String getCodVendedor() {
+    public int getCodVendedor() {
         return codVendedor;
     }
 
-    public void setCodVendedor(String codVendedor) {
+    public void setCodVendedor(int codVendedor) {
         this.codVendedor = codVendedor;
     }
 
-    public String getCodCliente() {
+    public int getCodCliente() {
         return codCliente;
     }
 
-    public void setCodCliente(String codCliente) {
+    public void setCodCliente(int codCliente) {
         this.codCliente = codCliente;
     }
 
@@ -68,5 +69,12 @@ public class Relatorio {
         this.valorTotal = valorTotal;
     }
     
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
 }
