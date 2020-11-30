@@ -5,6 +5,11 @@
  */
 package View;
 
+import Controller.ClienteController;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author gabriel
@@ -40,14 +45,20 @@ public class AdminClientes extends javax.swing.JFrame {
         btnBusca = new javax.swing.JButton();
         btnAdiciona = new javax.swing.JButton();
         btnAltera = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnDeleta = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Administrado de Clientes");
+        setTitle("Administrador de Clientes");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Administrador de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
         btnBuscaCPF.setText("Pesquisar");
+        btnBuscaCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaCPFActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Filtrar por CPF:");
 
@@ -60,6 +71,11 @@ public class AdminClientes extends javax.swing.JFrame {
         jLabel3.setText("Filtrar por nome:");
 
         btnBuscaNome.setText("Pesquisar");
+        btnBuscaNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaNomeActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes Cadastrados"));
 
@@ -68,11 +84,11 @@ public class AdminClientes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "CPF", "Email", "Telefone", "Status"
+                "Nome", "CPF", "Email", "Telefone", "Endereço", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -82,22 +98,66 @@ public class AdminClientes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblClientes);
 
         btnBusca.setText("Exibir todos");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
 
         btnAdiciona.setText("Adicionar");
+        btnAdiciona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionaActionPerformed(evt);
+            }
+        });
 
         btnAltera.setText("Alterar");
+        btnAltera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlteraActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Deletar");
+        btnDeleta.setText("Deletar");
+        btnDeleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletaActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(btnAdiciona)))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btnAltera)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnBuscaNome)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -105,27 +165,20 @@ public class AdminClientes extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnBuscaCPF))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscaNome)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnBuscaCPF)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnAdiciona)
-                        .addGap(50, 50, 50)
-                        .addComponent(btnAltera)
-                        .addGap(49, 49, 49)
-                        .addComponent(jButton1)
-                        .addGap(100, 100, 100))))
+                        .addGap(576, 576, 576)
+                        .addComponent(btnDeleta)
+                        .addGap(34, 34, 34)))
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta, btnVoltar});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,15 +196,16 @@ public class AdminClientes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAltera)
-                    .addComponent(jButton1)
+                    .addComponent(btnDeleta)
                     .addComponent(btnAdiciona)
-                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeleta, btnVoltar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,6 +226,86 @@ public class AdminClientes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraActionPerformed
+        
+        int linha = tblClientes.getSelectedRow();
+        String cpf = tblClientes.getValueAt(linha, 1).toString();
+        CadastrarCliente tela = new CadastrarCliente(cpf);
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_btnAlteraActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnAdicionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaActionPerformed
+        
+        CadastrarCliente tela = new CadastrarCliente();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_btnAdicionaActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblClientes.getModel();
+        ArrayList<String[]> listaClientes = ClienteController.selectAll();
+        tabela.setNumRows(0);
+        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(3);
+        
+        for(String[] cli : listaClientes) {
+            tabela.addRow(cli);
+        }
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnBuscaCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCPFActionPerformed
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblClientes.getModel();
+        String[] dadosCliente = ClienteController.selectByUnique(txtCPF.getText().replace("-", "").replace(".", ""));
+        tabela.setNumRows(0);
+        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(3);
+       
+        tabela.addRow(dadosCliente);
+        
+    }//GEN-LAST:event_btnBuscaCPFActionPerformed
+
+    private void btnBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaNomeActionPerformed
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblClientes.getModel();
+        ArrayList<String[]> listaClientes = ClienteController.selectByName(txtNome.getText());
+        tabela.setNumRows(0);
+        tblClientes.getColumnModel().getColumn(5).setPreferredWidth(3);
+        
+        for(String[] cli : listaClientes) {
+            tabela.addRow(cli);
+        }
+        
+    }//GEN-LAST:event_btnBuscaNomeActionPerformed
+
+    private void btnDeletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletaActionPerformed
+        
+        int linha = tblClientes.getSelectedRow();
+        String cpf = tblClientes.getValueAt(linha, 1).toString();
+        
+        if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir este registro?", 
+           "Excluir registro", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            
+            boolean service = ClienteController.delete(cpf);
+            
+            if(service) {
+                JOptionPane.showMessageDialog(null, "Os dados foram excluídos com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Houve falaha com a comunicação com o banco."
+                                                  + "\nTente novamente.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Exclusão Cancelada!");
+        }
+        
+    }//GEN-LAST:event_btnDeletaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,7 +348,8 @@ public class AdminClientes extends javax.swing.JFrame {
     private javax.swing.JButton btnBusca;
     private javax.swing.JButton btnBuscaCPF;
     private javax.swing.JButton btnBuscaNome;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDeleta;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;

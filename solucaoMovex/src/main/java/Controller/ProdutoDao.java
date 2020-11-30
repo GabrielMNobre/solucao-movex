@@ -9,6 +9,6 @@ package Controller;
  *
  * @author Ayrto
  */
-public class PessoaController {
+class ProdutoDao {
     
 }

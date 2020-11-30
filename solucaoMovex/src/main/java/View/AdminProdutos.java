@@ -5,6 +5,12 @@
  */
 package View;
 
+import Controller.ProdutoController;
+import DAO.ProdutoDAO;
+import java.util.ArrayList;
+import Model.Produto;
+import Utils.Validador;
+import javax.swing.JOptionPane;
 /**
  *
  * @author gabriel
@@ -12,7 +18,7 @@ package View;
 public class AdminProdutos extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminProdutos
+     * Creates new form AdminClientes
      */
     public AdminProdutos() {
         initComponents();
@@ -28,21 +34,254 @@ public class AdminProdutos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        btnBuscaCodigo = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
+        btnBuscaNome = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProdutos = new javax.swing.JTable();
+        btnBusca = new javax.swing.JButton();
+        btnAdiciona = new javax.swing.JButton();
+        btnAltera = new javax.swing.JButton();
+        btnDeletar = new javax.swing.JButton();
+        txtNome = new javax.swing.JTextField();
+        lblErros = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Administrador de Clientes");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Administrador de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
+
+        btnBuscaCodigo.setText("Pesquisar");
+        btnBuscaCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaCodigoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Filtrar por Código:");
+
+        jLabel3.setText("Filtrar por nome:");
+
+        btnBuscaNome.setText("Pesquisar");
+        btnBuscaNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaNomeActionPerformed(evt);
+            }
+        });
+
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos Cadastrados"));
+
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tblProdutos);
+
+        btnBusca.setText("Exibir todos");
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscaActionPerformed(evt);
+            }
+        });
+
+        btnAdiciona.setText("Adicionar");
+        btnAdiciona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionaActionPerformed(evt);
+            }
+        });
+
+        btnAltera.setText("Alterar");
+        btnAltera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlteraActionPerformed(evt);
+            }
+        });
+
+        btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
+
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscaCodigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lblErros))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBuscaNome)))
+                        .addContainerGap(437, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAdiciona)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAltera)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnDeletar)
+                        .addGap(100, 100, 100))))
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeletar});
+
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscaCodigo)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblErros))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(btnBuscaNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAltera)
+                    .addComponent(btnDeletar)
+                    .addComponent(btnAdiciona)
+                    .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAdiciona, btnAltera, btnBusca, btnDeletar});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAdicionaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionaActionPerformed
+        CadastrarProduto cadastrar = new CadastrarProduto();
+        cadastrar.setVisible(true);
+    }//GEN-LAST:event_btnAdicionaActionPerformed
+
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomeActionPerformed
+
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
+        ProdutoController produto = new ProdutoController();
+        produto.exibirTodos(tblProdutos);
+    }//GEN-LAST:event_btnBuscaActionPerformed
+
+    private void btnBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaNomeActionPerformed
+        ProdutoController produto = new ProdutoController();
+        if (txtNome.getText() != ""){
+            produto.exibePorNome(txtNome.getText(), tblProdutos);
+        }
+    }//GEN-LAST:event_btnBuscaNomeActionPerformed
+
+    private void btnBuscaCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaCodigoActionPerformed
+        Validador validador = new Validador();
+        ProdutoController produto = new ProdutoController();
+        if (validador.ValidarNumero(txtCodigo, lblErros) == "OK"){
+            produto.exibePorCodigo(Integer.parseInt(txtCodigo.getText()), tblProdutos);
+        }
+    }//GEN-LAST:event_btnBuscaCodigoActionPerformed
+
+    private void btnAlteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraActionPerformed
+        int linhaSelecionada = tblProdutos.getSelectedRow();
+        int idSelecionado = 0;
+        
+        if(linhaSelecionada>=0){
+            idSelecionado = Integer.parseInt(tblProdutos.getValueAt(linhaSelecionada, 0).toString());
+            if(idSelecionado>0){
+                CadastrarProduto telaAtualizacao = new CadastrarProduto(idSelecionado);
+                telaAtualizacao.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "O ID selecionado é inválido.!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Escolha uma linha para atualizar!");
+            return;
+        }
+    }//GEN-LAST:event_btnAlteraActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        int linhaSelecionada = tblProdutos.getSelectedRow();
+        int idSelecionado = 0;
+        
+        if(linhaSelecionada>=0){
+            idSelecionado = Integer.parseInt(tblProdutos.getValueAt(linhaSelecionada, 0).toString());
+            if(idSelecionado>0){
+                if(JOptionPane.showConfirmDialog(null, "Deseja mesmo excluir o produto de ID "+idSelecionado+"?", 
+                    "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    ProdutoController controller = new ProdutoController();
+                    boolean deletar = controller.deletaProduto(idSelecionado);
+                    
+                    if(deletar) {
+                        JOptionPane.showMessageDialog(null, "Produto deletado com sucesso.");
+                        controller.exibirTodos(tblProdutos); 
+                     } else {
+                         JOptionPane.showMessageDialog(null, "Houve falaha com a comunicação com o banco."
+                                                           + "\nTente novamente.");
+                     }
+        } else {
+            JOptionPane.showMessageDialog(null, "Exclusão Cancelada!");
+        }
+            }else{
+                JOptionPane.showMessageDialog(this, "O ID selecionado é inválido.!");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Escolha uma linha para atualizar!");
+            return;
+        }        
+    }//GEN-LAST:event_btnDeletarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,6 +309,7 @@ public class AdminProdutos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AdminProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -80,5 +320,19 @@ public class AdminProdutos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdiciona;
+    private javax.swing.JButton btnAltera;
+    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnBuscaCodigo;
+    private javax.swing.JButton btnBuscaNome;
+    private javax.swing.JButton btnDeletar;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblErros;
+    private javax.swing.JTable tblProdutos;
+    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }

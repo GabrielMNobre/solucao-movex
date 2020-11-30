@@ -11,18 +11,19 @@ package Model;
  */
 public class Cliente {
     
+    private int id;
     private String nome;
     private String email;
     private String sexo;
     private String cpf;
     private String telefone;
     private String celular;
-    private String uf;
     private String cidade;
     private String cep;
     private String logradouro;
-    private int numeroLogradouro;
-    private String complementoLogradouro;
+    private int status;
+    
+    public Cliente() {}
     
     public Cliente(String dados[]) {
         setNome(dados[0]);
@@ -31,14 +32,19 @@ public class Cliente {
         setCpf(dados[3]);
         setTelefone(dados[4]);
         setCelular(dados[5]);
-        setUf(dados[6]);
-        setCidade(dados[7]);
-        setCep(dados[8]);
-        setLogradouro(dados[9]);
-        setNumeroLogradouro(Integer.parseInt(dados[10]));
-        setComplementoLogradouro(dados[11]);
+        setCidade(dados[6]);
+        setCep(dados[7]);
+        setLogradouro(dados[8]);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -87,14 +93,6 @@ public class Cliente {
         this.celular = celular;
     }
 
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -119,20 +117,12 @@ public class Cliente {
         this.logradouro = logradouro;
     }
     
-    public int getNumeroLogradouro() {
-        return numeroLogradouro;
+    public int getStatus() {
+        return status;
     }
 
-    public void setNumeroLogradouro(int numeroLogradouro) {
-        this.numeroLogradouro = numeroLogradouro;
-    }
-
-    public String getComplementoLogradouro() {
-        return complementoLogradouro;
-    }
-
-    public void setComplementoLogradouro(String complementoLogradouro) {
-        this.complementoLogradouro = complementoLogradouro;
+    public void setStatus(int status) {
+        this.status = status;
     }
     
 }
