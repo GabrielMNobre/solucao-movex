@@ -31,6 +31,8 @@ public class Home extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnNovaVenda = new javax.swing.JMenu();
+        miRealizaVenda = new javax.swing.JMenuItem();
+        miFinalizaVenda = new javax.swing.JMenuItem();
         btnProduto = new javax.swing.JMenu();
         miConsultaProd = new javax.swing.JMenuItem();
         miAddProd = new javax.swing.JMenuItem();
@@ -62,6 +64,25 @@ public class Home extends javax.swing.JFrame {
 
         btnNovaVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
         btnNovaVenda.setText("Nova Venda");
+
+        miRealizaVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miRealizaVenda.setText("Realizar Venda");
+        miRealizaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRealizaVendaActionPerformed(evt);
+            }
+        });
+        btnNovaVenda.add(miRealizaVenda);
+
+        miFinalizaVenda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        miFinalizaVenda.setText("Finalizar venda");
+        miFinalizaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miFinalizaVendaActionPerformed(evt);
+            }
+        });
+        btnNovaVenda.add(miFinalizaVenda);
+
         jMenuBar1.add(btnNovaVenda);
 
         btnProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
@@ -212,6 +233,20 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miRelatoriosActionPerformed
 
+    private void miRealizaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRealizaVendaActionPerformed
+        
+        VendaNova tela = new VendaNova();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miRealizaVendaActionPerformed
+
+    private void miFinalizaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miFinalizaVendaActionPerformed
+        
+        FinalizarVenda tela = new FinalizarVenda();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miFinalizaVendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -262,6 +297,8 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem miConsultaCli;
     private javax.swing.JMenuItem miConsultaFunc;
     private javax.swing.JMenuItem miConsultaProd;
+    private javax.swing.JMenuItem miFinalizaVenda;
+    private javax.swing.JMenuItem miRealizaVenda;
     private javax.swing.JMenuItem miRelatorios;
     // End of variables declaration//GEN-END:variables
 }
