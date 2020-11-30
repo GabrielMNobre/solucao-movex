@@ -11,8 +11,7 @@ package Model;
  */
 public class Cliente {
     
-    private int codigoCliente;
-
+    private int id;
     private String nome;
     private String email;
     private String sexo;
@@ -38,14 +37,6 @@ public class Cliente {
         setLogradouro(dados[8]);
     }
     
-    public int getCodigoCliente() {
-        return codigoCliente;
-    }
-
-    public void setCodigoCliente(int codigoCliente) {
-        this.codigoCliente = codigoCliente;
-    }
-
     public int getId() {
         return id;
     }

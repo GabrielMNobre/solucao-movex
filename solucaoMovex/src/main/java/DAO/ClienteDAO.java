@@ -231,7 +231,7 @@ public class ClienteDAO {
                    cli.setTelefone(resultado.getString("telefone"));
                    cli.setLogradouro(resultado.getString("endereco"));
                    cli.setStatus(resultado.getInt("ativo"));
-                   cli.setCodigoCliente(Integer.parseInt(resultado.getString("codigo_cliente")));                   
+                   cli.setId(Integer.parseInt(resultado.getString("codigo_cliente")));                   
                    listaClientes.add(cli);
                }
             } catch(SQLException e) {

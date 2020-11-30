@@ -73,7 +73,7 @@ public class ClienteController {
                 cli.getTelefone(),
                 cli.getLogradouro(),
                 cli.getStatus() == 1 ? "Ativo" : "Inativo",
-                Integer.toString(cli.getCodigoCliente())
+                Integer.toString(cli.getId())
             });
             System.out.println(cli);
         }
