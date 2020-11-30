@@ -41,6 +41,7 @@ public class Home extends javax.swing.JFrame {
         miConsultaFunc = new javax.swing.JMenuItem();
         miAddFunc = new javax.swing.JMenuItem();
         btnRelatorio = new javax.swing.JMenu();
+        miRelatorios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HOME");
@@ -134,6 +135,16 @@ public class Home extends javax.swing.JFrame {
 
         btnRelatorio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dinheiro.png"))); // NOI18N
         btnRelatorio.setText("Relatórios");
+
+        miRelatorios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        miRelatorios.setText("Gerar Relatórios");
+        miRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miRelatoriosActionPerformed(evt);
+            }
+        });
+        btnRelatorio.add(miRelatorios);
+
         jMenuBar1.add(btnRelatorio);
 
         setJMenuBar(jMenuBar1);
@@ -194,6 +205,13 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_miAddProdActionPerformed
 
+    private void miRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miRelatoriosActionPerformed
+        
+        Relatorio tela = new Relatorio();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_miRelatoriosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,5 +262,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem miConsultaCli;
     private javax.swing.JMenuItem miConsultaFunc;
     private javax.swing.JMenuItem miConsultaProd;
+    private javax.swing.JMenuItem miRelatorios;
     // End of variables declaration//GEN-END:variables
 }

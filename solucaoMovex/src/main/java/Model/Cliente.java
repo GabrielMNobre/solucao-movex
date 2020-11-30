@@ -22,8 +22,6 @@ public class Cliente {
     private String cidade;
     private String cep;
     private String logradouro;
-    private int numeroLogradouro;
-    private String complementoLogradouro;
     private int status;
     
     public Cliente() {}
@@ -38,8 +36,6 @@ public class Cliente {
         setCidade(dados[6]);
         setCep(dados[7]);
         setLogradouro(dados[8]);
-        setNumeroLogradouro(Integer.parseInt(dados[9]));
-        setComplementoLogradouro(dados[10]);
     }
     
     public int getCodigoCliente() {
@@ -50,6 +46,14 @@ public class Cliente {
         this.codigoCliente = codigoCliente;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -120,22 +124,6 @@ public class Cliente {
 
     public void setLogradouro(String logradouro) {
         this.logradouro = logradouro;
-    }
-    
-    public int getNumeroLogradouro() {
-        return numeroLogradouro;
-    }
-
-    public void setNumeroLogradouro(int numeroLogradouro) {
-        this.numeroLogradouro = numeroLogradouro;
-    }
-
-    public String getComplementoLogradouro() {
-        return complementoLogradouro;
-    }
-
-    public void setComplementoLogradouro(String complementoLogradouro) {
-        this.complementoLogradouro = complementoLogradouro;
     }
     
     public int getStatus() {

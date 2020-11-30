@@ -81,4 +81,39 @@ public class ClienteController {
         return retorno;
     }
     
+    public static String[] select(String cpf) {
+        
+        Cliente cli = ClienteDAO.select(cpf);
+        String cliRetorno[] = null;
+        
+        if(cli != null) {
+            cliRetorno = new String[] {
+                cli.getNome(),
+                cli.getEmail(),
+                cli.getCpf(),
+                cli.getSexo(),
+                cli.getTelefone(),
+                cli.getCelular(),
+                cli.getCidade(),
+                cli.getCep(),
+                cli.getLogradouro(),
+                String.valueOf(cli.getId())
+            };
+        }
+        
+        return cliRetorno;
+    }
+    
+    public static boolean update(String dados[], int id) {
+        
+        Cliente cli = new Cliente(dados);
+        
+        return ClienteDAO.update(cli, id);
+    }
+    
+    public static boolean delete(String cpf) {
+        
+        return ClienteDAO.delete(cpf);
+        
+    }
 }

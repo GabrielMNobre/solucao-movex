@@ -6,7 +6,6 @@
 package View;
 
 import Controller.ClienteController;
-import Model.Cliente;
 import Utils.Validador;
 import javax.swing.JOptionPane;
 
@@ -25,11 +24,11 @@ public class CadastrarCliente extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public CadastrarCliente(String nome) {
+    public CadastrarCliente(String cpf) {
         initComponents();
         setLocationRelativeTo(null);
         modoTela = "Alterar";
-        btnCadastrar.setText("ALTERAR");
+        preencherTabela(cpf);
     }
 
     /**
@@ -57,17 +56,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
         txtCidade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
-        txtComplemento = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         lblErros = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rboMasc = new javax.swing.JRadioButton();
+        rboFem = new javax.swing.JRadioButton();
         btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -113,12 +108,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
         jLabel7.setText("Endereço:");
 
-        jLabel8.setText("Complemento:");
-
-        jLabel9.setText("Número:");
-
-        txtComplemento.setToolTipText("Campo Opcional");
-
         jLabel10.setText("Email:");
 
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
@@ -140,13 +129,14 @@ public class CadastrarCliente extends javax.swing.JFrame {
 
         jLabel11.setText("Sexo:");
 
-        bgoSexo.add(jRadioButton1);
-        jRadioButton1.setText("Masculino");
-        jRadioButton1.setActionCommand("Masculino");
+        bgoSexo.add(rboMasc);
+        rboMasc.setSelected(true);
+        rboMasc.setText("Masculino");
+        rboMasc.setActionCommand("Masculino");
 
-        bgoSexo.add(jRadioButton2);
-        jRadioButton2.setText("Feminino");
-        jRadioButton2.setActionCommand("Feminino");
+        bgoSexo.add(rboFem);
+        rboFem.setText("Feminino");
+        rboFem.setActionCommand("Feminino");
 
         btnVoltar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnVoltar.setText("VOLTAR");
@@ -166,7 +156,6 @@ public class CadastrarCliente extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel9)
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)
                             .addComponent(jLabel3)
@@ -189,26 +178,16 @@ public class CadastrarCliente extends javax.swing.JFrame {
                                         .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
                                         .addComponent(txtTelefone, javax.swing.GroupLayout.Alignment.TRAILING))
                                     .addGroup(panelInfosLayout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(rboMasc)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jRadioButton2)))
-                                .addGap(0, 161, Short.MAX_VALUE))))
+                                        .addComponent(rboFem)))
+                                .addGap(0, 179, Short.MAX_VALUE))))
                     .addGroup(panelInfosLayout.createSequentialGroup()
-                        .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelInfosLayout.createSequentialGroup()
-                                .addGap(110, 110, 110)
-                                .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel8))
-                            .addGroup(panelInfosLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(24, 24, 24)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelInfosLayout.createSequentialGroup()
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 6, Short.MAX_VALUE))
-                            .addComponent(txtComplemento))))
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(lblErros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -233,8 +212,8 @@ public class CadastrarCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rboMasc)
+                    .addComponent(rboFem))
                 .addGap(18, 18, 18)
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -257,17 +236,11 @@ public class CadastrarCliente extends javax.swing.JFrame {
                     .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelInfosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblErros, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addGap(112, 112, 112))
         );
 
         panelInfosLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCadastrar, btnVoltar});
@@ -283,12 +256,13 @@ public class CadastrarCliente extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelInfos, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(panelInfos, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
-        setBounds(0, 0, 644, 618);
+        setBounds(0, 0, 644, 575);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -302,38 +276,48 @@ public class CadastrarCliente extends javax.swing.JFrame {
         valida.isNull(txtCelular, lblErros);
         valida.isNull(txtCEP, lblErros);
         valida.isNull(txtEndereco, lblErros);
-        valida.isNull(txtNumero, lblErros);
         
         if(!valida.isNull(txtNome, lblErros) && !valida.isNull(txtEmail, lblErros) && !valida.isNull(txtTelefone, lblErros) && 
            !valida.isNull(txtCelular, lblErros) && !valida.isNull(txtCidade, lblErros) && !valida.isNull(txtCEP, lblErros) && 
-           !valida.isNull(txtEndereco, lblErros) && !valida.isNull(txtCPF, lblErros) && !valida.isNull(txtNumero, lblErros)) {
+           !valida.isNull(txtEndereco, lblErros) && !valida.isNull(txtCPF, lblErros)) {
             
-            if(valida.ValidarNumero(txtNumero, lblErros).equals("OK")) {
-                String dados[] = {
-                    txtNome.getText(),
-                    txtEmail.getText(),
-                    bgoSexo.getSelection().getActionCommand(),
-                    txtCPF.getText().replace(".", "").replace("-", ""),
-                    txtTelefone.getText().replace("(", "").replace("-", "").replace(")", "").trim(),
-                    txtCelular.getText().replace("(", "").replace("-", "").replace(")", "").trim(),
-                    txtCidade.getText(),
-                    txtCEP.getText().replace("-", ""),
-                    txtEndereco.getText(),
-                    txtNumero.getText(),
-                    txtComplemento.getText()
-                };
-                Cliente cli = new Cliente(dados);
-                
+            String dados[] = {
+                txtNome.getText(),
+                txtEmail.getText(),
+                bgoSexo.getSelection().getActionCommand(),
+                txtCPF.getText().replace(".", "").replace("-", ""),
+                txtTelefone.getText().replace("(", "").replace("-", "").replace(")", "").trim(),
+                txtCelular.getText().replace("(", "").replace("-", "").replace(")", "").trim(),
+                txtCidade.getText(),
+                txtCEP.getText().replace("-", ""),
+                txtEndereco.getText()
+            };
+            
+            if(modoTela.equals("Criar")) {
                 boolean service = ClienteController.insereInfo(dados);
-            
+
                 if(service) {
                     JOptionPane.showMessageDialog(null, "Os dados foram inseridos com sucesso!");
                     this.setVisible(false);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Houve falaha com a comunicação com o banco."
+                    JOptionPane.showMessageDialog(null, "Houve falha com a comunicação com o banco."
                                                       + "\nTente novamente.");
-                } 
+                }
+            } else {
+                String[] btn = btnCadastrar.getText().split(" ");
+                int id = Integer.parseInt(btn[2]);
+                boolean service = ClienteController.update(dados, id);
+
+                if(service) {
+                    JOptionPane.showMessageDialog(null, "Os dados foram alterados com sucesso!");
+                    this.setVisible(false);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Houve falha com a comunicação com o banco."
+                                                      + "\nTente novamente.");
+                }
             }
+             
+            
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -394,22 +378,39 @@ public class CadastrarCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblCPF;
     private javax.swing.JLabel lblErros;
     private javax.swing.JPanel panelInfos;
+    private javax.swing.JRadioButton rboFem;
+    private javax.swing.JRadioButton rboMasc;
     private javax.swing.JFormattedTextField txtCEP;
     private javax.swing.JFormattedTextField txtCPF;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JTextField txtCidade;
-    private javax.swing.JTextField txtComplemento;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNumero;
     private javax.swing.JFormattedTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+    
+    private void preencherTabela(String cpf) {
+        
+        String[] infos = ClienteController.select(cpf);
+        
+        txtNome.setText(infos[0]);
+        txtEmail.setText(infos[1]);
+        txtCPF.setText(infos[2]);
+        if(infos[3].equals("M")) {
+            rboMasc.setSelected(true); 
+        } else {
+            rboFem.setSelected(true);
+        }
+        txtTelefone.setText(infos[4]);
+        txtCelular.setText(infos[5]);
+        txtCidade.setText(infos[6]);
+        txtCEP.setText(infos[7]);
+        txtEndereco.setText(infos[8]);
+        btnCadastrar.setText("ALTERAR ID "+infos[9]);
+        
+    }
 }
