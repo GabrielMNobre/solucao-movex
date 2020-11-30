@@ -35,6 +35,23 @@ public class FinalizarVenda extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
+    
+    public FinalizarVenda(String pedido) {
+        initComponents();
+        txtNumeroPedido.setText(pedido);
+        consultaPedido();
+        txtVendedor.setEditable(false);
+        txtCliente.setEditable(false);
+        txtValorPago.setEditable(false);
+        txtTroco.setEditable(false);
+        txtValorTotal.setEditable(false);
+        txtMetodo.setEditable(false);
+        tmPayments.addColumn("Método");
+        tmPayments.addColumn("Valor");
+        tblPagamentos.setModel(tmPayments);
+        this.setExtendedState(MAXIMIZED_BOTH);
+        setLocationRelativeTo(null);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -588,6 +605,11 @@ public class FinalizarVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarVendaActionPerformed
 
     private void btnConsultaPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaPedidoActionPerformed
+        consultaPedido();
+        
+    }//GEN-LAST:event_btnConsultaPedidoActionPerformed
+    
+    public void consultaPedido() {
         if(!(validador.ValidarNumero(txtNumeroPedido, lblErros) == "ok")){
             int numero = Integer.parseInt(txtNumeroPedido.getText());
             boolean retorno = VendaController.consultaPedido(numero, txtVendedor, txtCliente, txtValorTotal);
@@ -597,9 +619,8 @@ public class FinalizarVenda extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Insira um número de pedido válido.");
         }
-        
-    }//GEN-LAST:event_btnConsultaPedidoActionPerformed
-
+    }
+    
     private void txtValoraPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValoraPagarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtValoraPagarActionPerformed

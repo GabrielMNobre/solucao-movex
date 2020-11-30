@@ -529,7 +529,6 @@ public class VendaNova extends javax.swing.JFrame {
                 txtSubTotal.setText(Double.toString(Double.parseDouble(txtSubTotal.getText()) + total));
                 JOptionPane.showMessageDialog(this, "Produto inserido com sucesso!");
             }
-            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -574,6 +573,13 @@ public class VendaNova extends javax.swing.JFrame {
             
             if (inserePedido[0] == "sucesso"){
                 JOptionPane.showMessageDialog(this, inserePedido[1]);
+                if(JOptionPane.showConfirmDialog(null, "Deseja ir para a tela de finalizar pedido?", 
+                    "Excluir", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    FinalizarVenda venda = new FinalizarVenda(inserePedido[2]);
+                    this.setVisible(false);
+                    venda.setVisible(true);
+                }
+                
             } else {
                 JOptionPane.showMessageDialog(this, inserePedido[1]);
             }
