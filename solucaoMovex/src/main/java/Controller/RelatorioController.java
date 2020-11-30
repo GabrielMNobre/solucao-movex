@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.RelatorioDAO;
 import Model.Relatorio;
+import Model.RelatorioEspecifico;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,6 +29,26 @@ public class RelatorioController {
                 String.valueOf(rel.getCodCliente()),
                 String.valueOf(rel.getValorTotal()),
                 rel.getStatus()
+            });
+        }
+        
+        return retorno;
+        
+    }
+    
+    public static ArrayList<String[]> selectPedido(int id) {
+        
+        ArrayList<RelatorioEspecifico> listaProdutos = RelatorioDAO.selectPedido(id);
+        ArrayList<String[]> retorno = new ArrayList<>();
+        
+        for (RelatorioEspecifico rel : listaProdutos) {
+            retorno.add(new String[]{
+                String.valueOf(rel.getIdPedido()),
+                String.valueOf(rel.getCodProduto()),
+                rel.getNomeProduto(),
+                String.valueOf(rel.getQtdProduto()),
+                String.valueOf(rel.getPrecoUnitario()),
+                String.valueOf(rel.getSubtotal()),
             });
         }
         

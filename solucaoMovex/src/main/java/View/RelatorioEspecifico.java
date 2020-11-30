@@ -5,6 +5,10 @@
  */
 package View;
 
+import Controller.RelatorioController;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Danga
@@ -18,6 +22,25 @@ public class RelatorioEspecifico extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    public RelatorioEspecifico(int id) {
+        initComponents();
+        setLocationRelativeTo(null);
+        
+        DefaultTableModel tabela = (DefaultTableModel) tblProduto.getModel();
+        tabela.setNumRows(0);
+        double soma = 0;
+        
+        ArrayList<String[]> listaProduto = RelatorioController.selectPedido(id);
+        for(String[] produto : listaProduto) {
+            tabela.addRow(produto);
+        }
+        for(int i = 0; i < tabela.getRowCount(); i++) {
+            soma += Double.parseDouble(tblProduto.getValueAt(i, 5).toString());
+        }
+        lblTotal.setText("R$" + soma);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,7 +53,7 @@ public class RelatorioEspecifico extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProduto = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
@@ -40,18 +63,23 @@ public class RelatorioEspecifico extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Relatório do pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Número do Pedido", "Código do Produto", "Quantidade do Produto", "Preço Unitário", "Desconto ", "Subtotal "
+                "Número do Pedido", "Código do Produto", "Nome do Produto", "Quantidade do Produto", "Preço Unitário", "Subtotal"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblProduto);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Valor total do Pedido: ");
@@ -71,15 +99,15 @@ public class RelatorioEspecifico extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblTotal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,7 +186,7 @@ public class RelatorioEspecifico extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTable tblProduto;
     // End of variables declaration//GEN-END:variables
 }

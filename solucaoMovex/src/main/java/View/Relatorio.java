@@ -271,7 +271,10 @@ public class Relatorio extends javax.swing.JFrame {
 
     private void btnMoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoreActionPerformed
         
-        RelatorioEspecifico tela = new RelatorioEspecifico();
+        int linha = tblPedidos.getSelectedRow();
+        int id = Integer.parseInt(tblPedidos.getValueAt(linha, 0).toString());
+        
+        RelatorioEspecifico tela = new RelatorioEspecifico(id);
         tela.setVisible(true);
         
     }//GEN-LAST:event_btnMoreActionPerformed

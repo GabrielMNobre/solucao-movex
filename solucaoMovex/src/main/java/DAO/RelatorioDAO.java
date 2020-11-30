@@ -6,6 +6,7 @@
 package DAO;
 
 import Model.Relatorio;
+import Model.RelatorioEspecifico;
 import Utils.Conector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,5 +72,56 @@ public class RelatorioDAO {
         
         return listaVendas;
     } 
+    
+    public static ArrayList<RelatorioEspecifico> selectPedido(int id) {
+        Connection conexao = Conector.conectaBanco();
+        ArrayList<RelatorioEspecifico> listaProduto = new ArrayList<>();
+        
+        if(conexao != null) {
+            try {
+                st = conexao.prepareStatement("select d.codigo_pedido, d.codigo_produto, p.nome, d.quantidade, d.preco, d.total " +
+                                              "from pedido_detalhe d " +
+                                              "inner join produto p on p.codigo_produto = d.codigo_produto " +
+                                              "where codigo_pedido = ?;");
+                st.setInt(1, id);
+                System.out.println(st);
+                resultado = st.executeQuery();
+
+                while(resultado.next()) {
+                    RelatorioEspecifico r = new RelatorioEspecifico();
+                    r.setIdPedido(resultado.getInt("codigo_pedido"));
+                    r.setCodProduto(resultado.getInt("codigo_produto"));
+                    r.setNomeProduto(resultado.getString("nome"));
+                    r.setQtdProduto(resultado.getInt("quantidade"));
+                    r.setPrecoUnitario(resultado.getDouble("preco"));
+                    r.setSubtotal(resultado.getDouble("total"));
+                    
+                    listaProduto.add(r);
+                }
+            } catch(SQLException e) {
+               listaProduto = null;
+            } finally {
+                if(st != null) {
+                    try {
+                        st.close();
+                    } catch(SQLException e) {
+                        System.out.println(e);
+                    }
+                }
+                
+                if(conexao != null) {
+                    try {
+                        conexao.close();
+                    } catch(SQLException e) {
+                        System.out.println(e);
+                    }
+                }
+            }
+        } else {
+           listaProduto = null;
+        }
+        
+        return listaProduto;
+    }
     
 }
