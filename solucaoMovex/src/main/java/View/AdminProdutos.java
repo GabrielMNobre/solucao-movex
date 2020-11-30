@@ -222,7 +222,7 @@ public class AdminProdutos extends javax.swing.JFrame {
     private void btnBuscaNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaNomeActionPerformed
         ProdutoController produto = new ProdutoController();
         if (txtNome.getText() != ""){
-            produto.exibePorNome(txtNome.getText(), tblProdutos);
+            produto.exibePorNome(txtNome.getText(), tblProdutos, 1);
         }
     }//GEN-LAST:event_btnBuscaNomeActionPerformed
 
@@ -230,7 +230,7 @@ public class AdminProdutos extends javax.swing.JFrame {
         Validador validador = new Validador();
         ProdutoController produto = new ProdutoController();
         if (validador.ValidarNumero(txtCodigo, lblErros) == "OK"){
-            produto.exibePorCodigo(Integer.parseInt(txtCodigo.getText()), tblProdutos);
+            produto.exibePorCodigo(Integer.parseInt(txtCodigo.getText()), tblProdutos, 1);
         }
     }//GEN-LAST:event_btnBuscaCodigoActionPerformed
 

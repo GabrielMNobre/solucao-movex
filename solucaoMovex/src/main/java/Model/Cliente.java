@@ -36,7 +36,7 @@ public class Cliente {
         setCep(dados[7]);
         setLogradouro(dados[8]);
     }
-
+    
     public int getId() {
         return id;
     }

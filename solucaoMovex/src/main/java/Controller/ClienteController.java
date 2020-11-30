@@ -72,7 +72,8 @@ public class ClienteController {
                 cli.getEmail(),
                 cli.getTelefone(),
                 cli.getLogradouro(),
-                cli.getStatus() == 1 ? "Ativo" : "Inativo"
+                cli.getStatus() == 1 ? "Ativo" : "Inativo",
+                Integer.toString(cli.getId())
             });
             System.out.println(cli);
         }
