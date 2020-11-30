@@ -5,20 +5,23 @@
  */
 package View;
 
+import Controller.LoginController;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author castro
  */
-public class Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JDialog {
 
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        visualAdd();
         this.setLocationRelativeTo(null);
+        this.setModal(true);
     }
 
     /**
@@ -39,11 +42,12 @@ public class Login extends javax.swing.JFrame {
         icUsuario = new javax.swing.JLabel();
         icSenha = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
+        btnNovo = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setText("LOGIN");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
 
         jpLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -70,6 +74,15 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        btnNovo.setForeground(new java.awt.Color(254, 254, 254));
+        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
+        btnNovo.setBorder(null);
+        btnNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,12 +100,16 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(168, 168, 168))
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(146, 146, 146))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(221, 221, 221))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -108,15 +125,18 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(icSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEntrar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
         jpLogin.setLayout(jpLoginLayout);
         jpLoginLayout.setHorizontalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jpLoginLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jpLoginLayout.setVerticalGroup(
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,8 +152,7 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jpLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,8 +164,22 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+        
+        int permissaoEntrada = LoginController.verificaLogin(txtUsuario.getText(), String.valueOf(txtSenha.getPassword()));
+        
+        if(permissaoEntrada == 1) {
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!\nTente novamente!");
+        }
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
+        
+        CadastrarFuncionario tela = new CadastrarFuncionario();
+        tela.setVisible(true);
+        
+    }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +221,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnNovo;
     private javax.swing.JLabel icSenha;
     private javax.swing.JLabel icUsuario;
     private javax.swing.JLabel jLabel1;
@@ -197,4 +231,17 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private void visualAdd() {
+        
+        int flag = LoginController.verificaQtd();
+        
+        if(flag == 0) {
+            btnNovo.setVisible(true);
+        } else {
+            btnNovo.setVisible(false);
+        }
+        
+    }
+
 }

@@ -5,10 +5,24 @@
  */
 package Controller;
 
+import DAO.LoginDAO;
+
 /**
  *
- * @author Ayrto
+ * @author gabriel.nobre
  */
 public class LoginController {
+    
+    public static int verificaQtd() {
+        
+        return LoginDAO.verificaQtd();
+        
+    }
+    
+    public static int verificaLogin(String login, String senha) {
+        
+        return LoginDAO.verificaLogin(login, senha);
+        
+    }
     
 }
