@@ -277,4 +277,51 @@ public class FuncionarioDAO {
             return false;
         }
     }
+    
+    public static String[] selectByCod(int cod) {
+        
+        Connection conexao = Conector.conectaBanco();
+        
+        if(conexao != null) {
+            try {
+                st = conexao.prepareStatement("SELECT f.nome nomeF, c.nome nomeC FROM pedido_mestre p " +
+                                              "INNER JOIN funcionario f ON f.codigo_funcionario = p.codigo_vendedor " +
+                                              "INNER JOIN cliente c ON c.codigo_cliente = p.codigo_cliente  " +
+                                              "WHERE numero_pedido = ? ");
+                st.setInt(1, cod);
+                resultado = st.executeQuery();
+               
+                while(resultado.next()) {
+                    String[] retorno = {
+                        resultado.getString("nomeF"),
+                        resultado.getString("nomeC")
+                    };
+                    return retorno;
+                }
+                
+            } catch(SQLException e) {
+                System.out.println(e);
+                return null;
+            } finally {
+                if(st != null) {
+                    try {
+                        st.close();
+                    } catch(SQLException e) {
+                        System.out.println(e);
+                    }
+                }
+                
+                if(conexao != null) {
+                    try {
+                        conexao.close();
+                    } catch(SQLException e) {
+                        System.out.println(e);
+                    }
+                }
+            }
+        } else {
+            System.out.println("Falha na conexão com o banco");
+        }
+        return null;
+    }
 }

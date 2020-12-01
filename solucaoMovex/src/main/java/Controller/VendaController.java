@@ -5,19 +5,16 @@
  */
 package Controller;
 
+import DAO.FuncionarioDAO;
 import DAO.VendaDAO;
-import Model.Cliente;
-import Model.Funcionario;
 import Model.Pagamento;
 import Model.Venda;
-import static View.VendaNova.model;
 import java.util.Date;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,8 +29,7 @@ public class VendaController {
      */
     public static String[] populaVendedores()
     {
-        FuncionarioController funcionario = new FuncionarioController();
-        ArrayList<String[]> listaFuncionarios = funcionario.selectAll();
+        ArrayList<String[]> listaFuncionarios = FuncionarioController.selectAll();
         String[] listagem = new String[listaFuncionarios.size()];
         int n = 0;
         for (String[] func : listaFuncionarios) {
@@ -106,12 +102,13 @@ public class VendaController {
     {
         Venda obj = new Venda();
         obj = VendaDAO.consultaPedidoFinalizacao(numeroPedido);
-        Cliente cli = new Cliente();
-        Funcionario vend = new Funcionario();
         if (obj.getNumeroPedido() > 0) {
-            vendedor.setText("Ayrton");
-            cliente.setText("Estephanie");
-            valorTotal.setText(Double.toString(obj.getTotal()));
+            String[] dado = FuncionarioDAO.selectByCod(obj.getNumeroPedido());
+            if(dado != null) {
+                vendedor.setText(dado[0]);
+                cliente.setText(dado[1]);
+                valorTotal.setText(Double.toString(obj.getTotal()));
+            }
             return true;
         } else {
             return false;
