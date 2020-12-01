@@ -239,18 +239,21 @@ public class Relatorio extends javax.swing.JFrame {
         DefaultTableModel tabela = (DefaultTableModel) tblPedidos.getModel();
         tabela.setNumRows(0);
         double soma = 0;
-        
-        if(fim.after(inicio)) {
-            ArrayList<String[]> listaVendas = RelatorioController.selectPeriodo(inicio, fim);
-            for(String[] venda : listaVendas) {
-                tabela.addRow(venda);
+        if(inicio != null && fim != null) {
+            if(fim.after(inicio)) {
+                ArrayList<String[]> listaVendas = RelatorioController.selectPeriodo(inicio, fim);
+                for(String[] venda : listaVendas) {
+                    tabela.addRow(venda);
+                }
+                for(int i = 0; i < tabela.getRowCount(); i++) {
+                    soma += Double.parseDouble(tblPedidos.getValueAt(i, 3).toString());
+                }
+                lblTotal.setText("R$" + soma);
+            } else {
+                JOptionPane.showMessageDialog(null, "Período de datas inválido");
             }
-            for(int i = 0; i < tabela.getRowCount(); i++) {
-                soma += Double.parseDouble(tblPedidos.getValueAt(i, 3).toString());
-            }
-            lblTotal.setText("R$" + soma);
         } else {
-            JOptionPane.showMessageDialog(null, "Período de datas inválido");
+            JOptionPane.showMessageDialog(null, "É necessário entrar com as datas para gerar o relatório!");
         }
         
     }//GEN-LAST:event_btnPesquisaActionPerformed
