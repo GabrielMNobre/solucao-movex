@@ -53,7 +53,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
         lblEstoqueMinimo = new javax.swing.JLabel();
         lblEstoqueAtual = new javax.swing.JLabel();
         lblCodigoBarras = new javax.swing.JLabel();
-        lblImagem = new javax.swing.JLabel();
         txtDescricao = new javax.swing.JTextField();
         txtEstoqueMinimo = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
@@ -63,40 +62,38 @@ public class CadastrarProduto extends javax.swing.JFrame {
         txtCodigoBarras = new javax.swing.JTextField();
         btnCadastrar1 = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        lblErros = new javax.swing.JLabel();
         btnLimparCampos = new javax.swing.JButton();
+        lblErros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Produtos");
         setBackground(new java.awt.Color(204, 204, 204));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
-        lblNome.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblNome.setText("Nome");
+        lblNome.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblNome.setText("Nome:");
 
-        lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblDescricao.setText("Descrição");
+        lblDescricao.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblDescricao.setText("Descrição:");
 
-        lblCategoria.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCategoria.setText("Categoria");
+        lblCategoria.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCategoria.setText("Categoria:");
 
-        lblCor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCor.setText("Cor");
+        lblCor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCor.setText("Cor:");
 
-        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblPreco.setText("Preço");
+        lblPreco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPreco.setText("Preço:");
 
-        lblEstoqueMinimo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblEstoqueMinimo.setText("Estoque Mínimo");
+        lblEstoqueMinimo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblEstoqueMinimo.setText("Estoque Mínimo:");
 
-        lblEstoqueAtual.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblEstoqueAtual.setText("Estoque Atual");
+        lblEstoqueAtual.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblEstoqueAtual.setText("Estoque Atual:");
 
-        lblCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCodigoBarras.setText("Codigo de Barras");
-
-        lblImagem.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblImagem.setText("Imagem");
+        lblCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCodigoBarras.setText("Codigo de Barras:");
 
         txtEstoqueMinimo.setText("0");
         txtEstoqueMinimo.addActionListener(new java.awt.event.ActionListener() {
@@ -130,8 +127,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
             }
         });
 
-        lblErros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
         btnLimparCampos.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnLimparCampos.setText("LIMPAR CAMPOS");
         btnLimparCampos.addActionListener(new java.awt.event.ActionListener() {
@@ -140,89 +135,91 @@ public class CadastrarProduto extends javax.swing.JFrame {
             }
         });
 
+        lblErros.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblErros.setForeground(new java.awt.Color(255, 0, 0));
+        lblErros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblErros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblErros, javax.swing.GroupLayout.PREFERRED_SIZE, 559, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCodigoBarras)
-                            .addComponent(lblNome)
-                            .addComponent(lblDescricao)
-                            .addComponent(lblCategoria)
-                            .addComponent(lblPreco)
-                            .addComponent(lblCor)
                             .addComponent(lblEstoqueMinimo)
-                            .addComponent(lblImagem)
                             .addComponent(lblEstoqueAtual)
-                            .addComponent(btnCadastrar1))
+                            .addComponent(lblCor)
+                            .addComponent(lblPreco)
+                            .addComponent(lblCategoria)
+                            .addComponent(lblDescricao)
+                            .addComponent(lblNome))
+                        .addGap(27, 27, 27)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCodigoBarras, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEstoqueMinimo)
-                                    .addComponent(txtEstoqueAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
-                                    .addComponent(txtCor)))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(btnLimparCampos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                                .addComponent(btnVoltar)))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCodigoBarras, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEstoqueMinimo)
+                            .addComponent(txtEstoqueAtual, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE)
+                            .addComponent(txtCor))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btnCadastrar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDescricao)
                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCategoria)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblPreco)
-                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPreco))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCor)
                     .addComponent(txtCor, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstoqueAtual)
                     .addComponent(txtEstoqueAtual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblEstoqueMinimo)
-                    .addComponent(txtEstoqueMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEstoqueMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEstoqueMinimo))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCodigoBarras, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCodigoBarras))
-                .addGap(36, 36, 36)
-                .addComponent(lblImagem)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar1)
-                    .addComponent(btnVoltar)
-                    .addComponent(btnLimparCampos))
-                .addGap(39, 39, 39)
-                .addComponent(lblErros, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimparCampos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblErros, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -232,15 +229,15 @@ public class CadastrarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -392,7 +389,6 @@ public class CadastrarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblErros;
     private javax.swing.JLabel lblEstoqueAtual;
     private javax.swing.JLabel lblEstoqueMinimo;
-    private javax.swing.JLabel lblImagem;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JTextField txtCategoria;

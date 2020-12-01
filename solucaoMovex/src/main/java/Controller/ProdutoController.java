@@ -65,14 +65,13 @@ public class ProdutoController {
                 tmProdutos.addColumn("Qtd Estoque");
                 tmProdutos.addColumn("Estoque Min");
                 tmProdutos.addColumn("Cod Barras");
-                tmProdutos.addColumn("Ativo");
 
                 tabela.setModel(tmProdutos);
                 tmProdutos.setRowCount(0);
             
             for (Produto produto : produtos) {
                 tmProdutos.addRow(new Object[]{produto.getId(), produto.getNome(), produto.getDescricao(), produto.getDepartamento(), 
-                produto.getPreco(), produto.getEstoqueAtual(), produto.getEstoqueMinimo(), produto.getCodigoBarras(), produto.getAtivo()});
+                produto.getPreco(), produto.getEstoqueAtual(), produto.getEstoqueMinimo(), produto.getCodigoBarras()});
             }
         }
     }

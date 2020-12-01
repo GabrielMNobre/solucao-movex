@@ -19,7 +19,6 @@ public class Login extends javax.swing.JDialog {
      */
     public Login() {
         initComponents();
-        visualAdd();
         this.setLocationRelativeTo(null);
         this.setModal(true);
     }
@@ -42,7 +41,6 @@ public class Login extends javax.swing.JDialog {
         icUsuario = new javax.swing.JLabel();
         icSenha = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
-        btnNovo = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setText("LOGIN");
@@ -74,15 +72,6 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
-        btnNovo.setForeground(new java.awt.Color(254, 254, 254));
-        btnNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/plus.png"))); // NOI18N
-        btnNovo.setBorder(null);
-        btnNovo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,10 +95,6 @@ public class Login extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(146, 146, 146))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(221, 221, 221))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -126,8 +111,7 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(icSenha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpLoginLayout = new javax.swing.GroupLayout(jpLogin);
@@ -142,8 +126,8 @@ public class Login extends javax.swing.JDialog {
             jpLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpLoginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,13 +157,6 @@ public class Login extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválido!\nTente novamente!");
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
-
-    private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
-        
-        CadastrarFuncionario tela = new CadastrarFuncionario();
-        tela.setVisible(true);
-        
-    }//GEN-LAST:event_btnNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +198,6 @@ public class Login extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JButton btnNovo;
     private javax.swing.JLabel icSenha;
     private javax.swing.JLabel icUsuario;
     private javax.swing.JLabel jLabel1;
@@ -231,17 +207,4 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
-
-    private void visualAdd() {
-        
-        int flag = LoginController.verificaQtd();
-        
-        if(flag == 0) {
-            btnNovo.setVisible(true);
-        } else {
-            btnNovo.setVisible(false);
-        }
-        
-    }
-
 }

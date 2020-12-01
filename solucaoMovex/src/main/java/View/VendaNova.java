@@ -6,7 +6,6 @@
 package View;
 
 import Controller.ClienteController;
-import Controller.FuncionarioController;
 import Controller.ProdutoController;
 import Controller.VendaController;
 import Utils.Validador;
@@ -107,8 +106,6 @@ public class VendaNova extends javax.swing.JFrame {
         setTitle("Nova Venda");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Selecione Cliente e Vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
-
-        cmbVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel1.setText("Vendedor");

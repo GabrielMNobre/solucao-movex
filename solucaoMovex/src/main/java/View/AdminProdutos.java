@@ -6,9 +6,6 @@
 package View;
 
 import Controller.ProdutoController;
-import DAO.ProdutoDAO;
-import java.util.ArrayList;
-import Model.Produto;
 import Utils.Validador;
 import javax.swing.JOptionPane;
 /**
@@ -50,7 +47,7 @@ public class AdminProdutos extends javax.swing.JFrame {
         lblErros = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Administrador de Clientes");
+        setTitle("Administrador de Produtos");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Administrador de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 14))); // NOI18N
 
