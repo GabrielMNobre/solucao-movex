@@ -1,0 +1,147 @@
+/* Modelo Lógico Movex: */
+create database solucao_movex;
+use solucao_movex;
+
+CREATE TABLE cliente (
+    codigo_cliente int auto_increment PRIMARY KEY,
+    nome varchar(60) not null,
+    cpf varchar(11) not null UNIQUE,
+    telefone varchar(15),
+    celular varchar(15) not null,
+    endereco varchar(100),
+    cep varchar(8),
+    cidade varchar(50),
+    email varchar(100),
+    ativo boolean not null default 1,
+    sexo char(1)
+);
+
+CREATE TABLE produto (
+    codigo_produto int auto_increment PRIMARY KEY,
+    descricao varchar(100),
+    nome varchar(60),
+    categoria varchar(30),
+    preco double,
+    cor varchar(10),
+    url_imagem varchar(20),
+    estoque_minimo int,
+    ativo boolean,
+    estoque_atual int,
+    codigo_barras varchar(20)
+);
+
+CREATE TABLE funcionario (
+    codigo_funcionario int auto_increment PRIMARY KEY,
+    nome varchar(60) not null,
+    cargo varchar(30) not null,
+    login varchar(50) not null,
+    senha varchar(50) not null,
+    ativo boolean default 1
+);
+
+CREATE TABLE pedido_mestre (
+    numero_pedido int auto_increment PRIMARY KEY,
+    codigo_vendedor int,
+    codigo_cliente integer,
+    frete double,
+    desconto double,
+    subtotal double,
+    total double,
+    status varchar(15),
+    data_criacao date
+);
+
+CREATE TABLE pedido_detalhe (
+    codigo_pedido_detalhe int auto_increment PRIMARY KEY,
+    codigo_pedido int,
+    codigo_produto int,
+    quantidade int,
+    preco double,
+    total double
+);
+
+CREATE TABLE pagamento (
+    codigo_pagamento integer auto_increment PRIMARY KEY,
+    codigo_pedido int,
+    forma varchar(20),
+    parcelas int,
+    valor double
+);
+ 
+ALTER TABLE pedido_mestre ADD CONSTRAINT FK_pedido_mestre_1
+    FOREIGN KEY (codigo_cliente)
+    REFERENCES cliente (codigo_cliente);
+ 
+ALTER TABLE pedido_mestre ADD CONSTRAINT FK_pedido_mestre_3
+    FOREIGN KEY (codigo_vendedor)
+    REFERENCES funcionario (codigo_funcionario);
+ 
+ALTER TABLE pedido_detalhe ADD CONSTRAINT FK_pedido_detalhe_1
+    FOREIGN KEY (codigo_pedido)
+    REFERENCES pedido_mestre (numero_pedido);
+ 
+ALTER TABLE pedido_detalhe ADD CONSTRAINT FK_pedido_detalhe_3
+    FOREIGN KEY (codigo_produto)
+    REFERENCES produto (codigo_produto);
+ 
+ALTER TABLE pagamento ADD CONSTRAINT FK_pagamento_1
+    FOREIGN KEY (codigo_pedido)
+    REFERENCES pedido_mestre (numero_pedido);
+
+
+
+/* Triggers */
+
+DELIMITER $$
+Create trigger atualizaEstoque AFTER INSERT on pedido_detalhe for each row
+Begin
+declare qtd int default null;
+set qtd = new.quantidade;
+UPDATE produto SET estoque_atual = estoque_atual - qtd WHERE codigo_produto = new.codigo_produto;
+end
+
+DELIMITER $$
+create trigger atualizaEstoqueDelete BEFORE DELETE on pedido_detalhe for each row
+Begin
+declare qtd int default null;
+set qtd = old.quantidade;
+UPDATE produto SET estoque_atual = estoque_atual + qtd WHERE codigo_produto = old.codigo_produto;
+end
+
+/* INSERTS */ 
+
+INSERT INTO `produto` VALUES 
+(1,'Cama Box Queen','Cama Box Castor','Quarto',1300,'Creme','www.google.com',2,1,10,'12345879'),
+(2,'Cama Box de Casal','Cama Box Good Sleep','Quarto',900,'Marrom','www.google.com',5,1,16,'9584975'),
+(3,'Cama Box King Size Com Baú','Cama Box Woow','Quarto',2200,'Preta','www.google.com',1,1,5,'4895168'),
+(4,'Guarda Roupas Sweet Dreams','3 portas e 6 gavetas','Quarto',750,'Branco','www.google.com',2,1,6,'951753'),
+(5,'Guarda Roupas Madeira Madeira','4 portas de correr e 4 gavetas','Quarto',1320,'Marrom','www.google.com',2,1,15,'9596189'),
+(6,'Cadeira smart','Cadeira de Escritório Ruffus','Escritório',1300,'Preta','www.google.com',1,1,5,'21549'),
+(7,'Mesa com 8 lugares','Mesa de Cozinha Madeira Madeira','Cozinha',650,'Mogno','www.google.com',20,1,980,'2'),
+(8,'Sofá de 3 lugares','Em Suede','Sala',1700,'Marrom','www.google.com',2,1,10,'19484'),
+(9,'Sofá de 3 lugares','Em Suede','Sala',1700,'Preto','www.google.com',1,1,5,'2464987'),
+(10,'Armário de cozinha','Completo com cuba','Cozinha',2500,'Marrom','www.google.com',2,1,10,'454649');
+
+INSERT INTO `cliente` VALUES 
+(1,'Roberto','12837349070','11 55551120','11 955551120','Praça Berlim, 550','01110003','São Paulo','De Barros',1,'M'),
+(2,'Ryan Alexandre Raul Campos','49217500844','12 38137638','12 983431519','Praça Berlim 550','12216631','SP','ryanalexandreraulcampos@droganews.com.br',1,'M'),
+(3,'Praça Berlim','69491010824','12 25543384','12 985047778','Rua Sirlene Ferreira de Oliveira Lima, 850','12062360','Taubaté','emanuelkauelima-98@granadaimoveis.com.br',1,'M'),
+(4,'Fábio Diego Moura','87592360861','11 29315791','11 985172374','Rua Miguel Pinheiro da Silva, 162','06787540','Taboão da Serra','fabiodiegomoura_@homtail.com',1,'M'),
+(5,'Hadassa Carolina Brenda Bernardes','01373758830','11 26047353','11 982987057','Rua Firmino Barbosa, 425','08011190','São Paulo','hadassacarolinabrendabernardes-75@bigfoot.com',1,'F'),
+(6,'Cauê Bernardo Vinicius Ferreira','27426121810','11 38354479','11 985717924','Rua Cunha Porto, 966','02238170','São Paulo','cauebernardoviniciusferreira@uol.com.br',1,'M'),
+(7,'Rafael Gustavo Drumond','71553355849','12 38517880','12 986643007','Jardim Altos de Santana, 463','12214250','São José dos Campos','rafaelgustavodrumond_@gustavoscoelho.com.br',1,'M'),
+(8,'Alice Jaqueline Emily Castro','43497594849','16 28073677','16 991540938','Rua Hélio Severo, 956','14890082','Jaboticabal','alicejaquelineemilycastro-93@netpont.com.br',1,'F'),
+(9,'Caio Cláudio Lima','44399482869','17 28652600','17 998462135','Rua das Américas, 134','15500075','Votuporanga','caioclaudiolima@stetnet.com.br',1,'M'),
+(10,'Carolina Juliana Tatiane Barbosa','05352566803','11 36314957','11 985704539','Rua Inglaterra, 109','09210060','Santo André','carolinajulianatatianebarbosa@terrabrasil.com.br',1,'F'),
+(11,'Mariah Sophie Alves','73054417832','11 29760158','11 997125706','Rua da Mooca, 944','03165002','São Paulo','mariahsophiealves@edepbr.com.br',1,'F'),
+(12,'Enrico Ricardo Freitas','72398105857','11 38029061','11 999063025','Rua Pedro Domingues, 721','03333030','São Paulo','enricoricardofreitas-77@pierproj.com.br',1,'M'),
+(13,'João Guilherme Marcelo Barros','69565877850','17 28506673','17 986952481','Rua Capitão Sebastião de Almeida Sobrinho, 505','15061410','São José do Rio Preto','joaoguilhermemarcelobarros@aerobravo.com.br',1,'M'),
+(14,'Raimundo Samuel Sérgio da Conceição','42495886884','15 27574429','15 989984475','Rua Um, 399','18052581','Sorocaba','raimundosamuelsergiodaconceicao-82@macaubas.com',1,'M'),
+(15,'Josefa Valentina Daniela Almada','03092440803','11 25334622','11 993403091','Rua Maestro Tom Jobim, 102','06804225','Embu das Artes','josefavalentinadanielaalmada_@yahoo.se',1,'F'),
+(16,'Eduarda Tatiane Cardoso','35675074864','19 27814673','19 984832454','Rua Armando Motter, 535','13059843','Campinas','eduardatatianecardoso@paae.com.br',1,'F'),
+(17,'Anthony Emanuel Alves','02695930801','19 36938678','19 989572887','Rua A, 432','13056193','Campinas','anthonyemanuelalves@dmadvogados.com',1,'M'),(18,'Leonardo Raul Joaquim Almada','94551839868','11 36206890','11 997822160','Avenida Dona Glória Pagnoncelli, 627','07081120','Guarulhos','leonardorauljoaquimalmada@fabiooliva.com.br',1,'M'),
+(19,'Ester Beatriz Ribeiro','60142358843','11 38066653','11 991215839','Rua Sapiranga, 212','06716653','Cotia','esterbeatrizribeiro@edpbr.com.br',1,'F'),
+(20,'Arthur Eduardo Severino Teixeira','14146639867','19 35136976','19 991269465','Rua Baguaçu, 748','13098326','Campinas','arthureduardoseverino@fixacomunicacao.com.br',1,'M'),
+(21,'Isabelle Milena Carvalho','07023969829','11 29031664','11 998087780','Travessa Amália Brugnoli, 277','04917195','11998087780','iisabellemilenacarvalho@mastria.com.br',1,'F');
+
+INSERT INTO `funcionario` VALUES (1,'Fernando Timóteo','Atendente','fernando','123',1);
